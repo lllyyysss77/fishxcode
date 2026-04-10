@@ -1,5 +1,7 @@
 ---
 layout: home
+title: FishXCode - Estación AI Coding
+description: Estación AI Coding para usar modelos Claude y Codex en múltiples plataformas.
 
 hero:
   name: "FishXCode"

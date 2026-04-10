@@ -1,5 +1,7 @@
 ---
 layout: home
+title: FishXCode - Relé AI Coding
+description: Relé AI Coding para usar modelos Claude e Codex em múltiplas plataformas.
 
 hero:
   name: "FishXCode"

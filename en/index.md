@@ -1,5 +1,7 @@
 ---
 layout: home
+title: FishXCode - AI Coding Relay
+description: AI Coding relay to use Claude and Codex models across multiple platforms.
 
 hero:
   name: "FishXCode"

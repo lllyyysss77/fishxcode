@@ -1,3 +1,8 @@
+---
+title: 在 Claude Code 中使用 FishXCode
+description: 用 Claude Code 接入 FishXCode 的完整上手流程和关键配置步骤。
+---
+
 # 在 Claude  Code 中使用 FishXCode
 
 > 首次使用？请先完成 [账户注册与充值](/account)。

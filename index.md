@@ -1,5 +1,7 @@
 ---
 layout: home
+title: FishXCode - AI Coding 中转站
+description: AI Coding 中转站 - 支持 Claude、Codex 模型在多种平台使用
 
 hero:
   name: "FishXCode"

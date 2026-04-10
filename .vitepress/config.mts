@@ -2,12 +2,33 @@ import { defineConfig, createContentLoader, type SiteConfig } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 import { groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import { Feed } from 'feed'
-import { writeFileSync, mkdirSync } from 'fs'
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'fs'
 import { resolve } from 'path'
 
 const SITE_URL = 'https://doc.fishxcode.com'
 const SITE_TITLE = 'FishXCode'
 const SITE_DESC = 'AI Coding 中转站 - 支持 Claude、Codex 模型在多种平台使用'
+
+const LOCALES = [
+  { lang: 'zh-CN', prefix: '' },
+  { lang: 'en-US', prefix: 'en' },
+  { lang: 'fr-FR', prefix: 'fr' },
+  { lang: 'es-ES', prefix: 'es' },
+  { lang: 'pt-BR', prefix: 'pt' },
+] as const
+
+const VERIFICATION_META = [
+  { env: 'GOOGLE_SITE_VERIFICATION', name: 'google-site-verification' },
+  { env: 'BING_SITE_VERIFICATION', name: 'msvalidate.01' },
+  { env: 'BAIDU_SITE_VERIFICATION', name: 'baidu-site-verification' },
+  { env: 'SOGOU_SITE_VERIFICATION', name: 'sogou_site_verification' },
+  { env: 'SO360_SITE_VERIFICATION', name: '360-site-verification' },
+  { env: 'YANDEX_SITE_VERIFICATION', name: 'yandex-verification' },
+  { env: 'NAVER_SITE_VERIFICATION', name: 'naver-site-verification' },
+  { env: 'SEZNAM_SITE_VERIFICATION', name: 'seznam-wmt' },
+] as const
+
+const VERIFICATION_META_TAGS = buildVerificationMetaTags()
 
 // GitHub Pages 子路径支持：
 //   - 本地开发 / Docker / 自定义域名：BASE = '/'
@@ -17,6 +38,117 @@ const BASE = (process.env.VITEPRESS_BASE ?? '/').replace(/([^/])$/, '$1/')
 /** 将站内绝对路径加上 base 前缀（供 head 标签使用，VitePress 不自动处理） */
 function p(path: string) {
   return BASE.replace(/\/$/, '') + path
+}
+
+function normalizeRelativePath(relativePath: string): string {
+  return relativePath.replace(/\\/g, '/').replace(/\.md$/, '')
+}
+
+function buildVerificationMetaTags() {
+  const tags: any[] = []
+
+  for (const item of VERIFICATION_META) {
+    const value = process.env[item.env]
+    if (value) {
+      tags.push(['meta', { name: item.name, content: value }])
+    }
+  }
+
+  const extra = process.env.SEO_VERIFICATION_EXTRA
+  if (extra) {
+    extra
+      .split(';')
+      .map((entry) => entry.trim())
+      .filter(Boolean)
+      .forEach((entry) => {
+        const [name, ...rest] = entry.split('=')
+        const content = rest.join('=').trim()
+        if (name && content) {
+          tags.push(['meta', { name: name.trim(), content }])
+        }
+      })
+  }
+
+  return tags
+}
+
+function stripLocalePrefix(path: string): string {
+  for (const locale of LOCALES) {
+    if (!locale.prefix) continue
+    if (path === locale.prefix) return ''
+    if (path.startsWith(`${locale.prefix}/`)) {
+      return path.slice(locale.prefix.length + 1)
+    }
+  }
+  return path
+}
+
+function toRoutePath(path: string): string {
+  if (!path || path === 'index') return '/'
+  if (path.endsWith('/index')) return `/${path.slice(0, -'/index'.length)}/`
+  return `/${path}`
+}
+
+function buildCanonical(relativePath: string): string {
+  const normalized = normalizeRelativePath(relativePath)
+  return `${SITE_URL}${toRoutePath(normalized)}`
+}
+
+function buildAlternate(relativePath: string, prefix: string): string {
+  const normalized = normalizeRelativePath(relativePath)
+  const basePath = stripLocalePrefix(normalized)
+  const localizedPath = prefix ? `${prefix}/${basePath}` : basePath
+  return `${SITE_URL}${toRoutePath(localizedPath)}`
+}
+
+function shouldIndexUrl(url: string): boolean {
+  if (!url) return false
+  return !/(^|\/)(README|CLAUDE)(\/|$)/i.test(url)
+}
+
+function stripFrontmatter(content: string): string {
+  if (!content.startsWith('---')) return content
+  const end = content.indexOf('\n---', 3)
+  if (end === -1) return content
+  return content.slice(end + '\n---'.length).replace(/^\s+/, '')
+}
+
+function extractDescriptionFromMarkdown(content: string): string | null {
+  const withoutFrontmatter = stripFrontmatter(content)
+  const withoutFences = withoutFrontmatter.replace(/```[\s\S]*?```/g, '')
+  const withoutHtml = withoutFences.replace(/<!--[\s\S]*?-->/g, '').replace(/<[^>]+>/g, '')
+  const withoutImages = withoutHtml.replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
+  const withoutLinks = withoutImages.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+  const withoutInlineCode = withoutLinks.replace(/`[^`]+`/g, '')
+
+  const lines = withoutInlineCode
+    .split('\n')
+    .map((line) =>
+      line
+        .replace(/^\s*#{1,6}\s+/, '')
+        .replace(/^\s*>+\s*/, '')
+        .replace(/^\s*[-*+]\s+/, '')
+        .replace(/^\s*\d+\.\s+/, '')
+        .trim()
+    )
+    .filter(Boolean)
+
+  if (lines.length === 0) return null
+
+  const joined = lines.join(' ').replace(/\s+/g, ' ').trim()
+  if (!joined) return null
+
+  return joined.length > 160 ? `${joined.slice(0, 157)}...` : joined
+}
+
+function readPageSource(relativePath: string, filePath?: string): string | null {
+  const candidates = [filePath, resolve(process.cwd(), relativePath)].filter(Boolean) as string[]
+  for (const candidate of candidates) {
+    if (existsSync(candidate)) {
+      return readFileSync(candidate, 'utf-8')
+    }
+  }
+  return null
 }
 
 async function generateFeed(siteConfig: SiteConfig) {
@@ -35,7 +167,7 @@ async function generateFeed(siteConfig: SiteConfig) {
   const pages = await createContentLoader('*.md', { excerpt: true, render: true }).load()
 
   for (const page of pages) {
-    if (!page.url || page.url === '/') continue
+    if (!page.url || page.url === '/' || !shouldIndexUrl(page.url)) continue
     const title = page.frontmatter?.title || page.url.replace(/^\/|\.html$/g, '')
     feed.addItem({
       title,
@@ -58,7 +190,8 @@ export default withPwa(defineConfig({
   lastUpdated: true,
   cleanUrls: true,
   sitemap: {
-    hostname: SITE_URL
+    hostname: SITE_URL,
+    transformItems: (items) => items.filter((item) => shouldIndexUrl(item.url ?? ''))
   },
   head: [
     ['link', { rel: 'icon', href: p('/img/logo.svg') }],
@@ -66,14 +199,67 @@ export default withPwa(defineConfig({
     ['link', { rel: 'alternate', type: 'application/atom+xml', title: 'FishXCode Atom', href: p('/feed.atom') }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'FishXCode' }],
-    ['meta', { property: 'og:title', content: 'FishXCode - AI Coding 中转站' }],
-    ['meta', { property: 'og:description', content: SITE_DESC }],
     ['meta', { property: 'og:image', content: `${SITE_URL}/img/logo.jpg` }],
-    ['meta', { property: 'og:url', content: SITE_URL }],
     ['meta', { name: 'twitter:card', content: 'summary' }],
     ['meta', { name: 'twitter:site', content: '@fishxcode' }],
     ['meta', { name: 'twitter:image', content: `${SITE_URL}/img/logo.jpg` }],
   ],
+  transformHead: (ctx) => {
+    const relativePath = ctx.pageData?.relativePath ?? ''
+    const canonical = ctx.pageData?.frontmatter?.canonical || (relativePath ? buildCanonical(relativePath) : SITE_URL)
+    const title = ctx.pageData?.title || SITE_TITLE
+    const description = ctx.pageData?.frontmatter?.description || ctx.pageData?.description || SITE_DESC
+
+    const head: any[] = [
+      ['link', { rel: 'canonical', href: canonical }],
+      ['meta', { name: 'description', content: description }],
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { property: 'og:url', content: canonical }],
+      ['meta', { name: 'twitter:title', content: title }],
+      ['meta', { name: 'twitter:description', content: description }],
+    ]
+
+    if (relativePath) {
+      for (const locale of LOCALES) {
+        head.push([
+          'link',
+          { rel: 'alternate', hreflang: locale.lang, href: buildAlternate(relativePath, locale.prefix) },
+        ])
+      }
+      head.push([
+        'link',
+        { rel: 'alternate', hreflang: 'x-default', href: buildAlternate(relativePath, '') },
+      ])
+    }
+
+    if (VERIFICATION_META_TAGS.length > 0) {
+      head.push(...VERIFICATION_META_TAGS)
+    }
+
+    return head
+  },
+  transformPageData: (pageData) => {
+    if (pageData.frontmatter?.description || pageData.description) {
+      return pageData
+    }
+
+    const relativePath = pageData.relativePath ?? ''
+    if (!relativePath) return pageData
+
+    const source = readPageSource(relativePath, (pageData as any).filePath)
+    if (!source) return pageData
+
+    const derived = extractDescriptionFromMarkdown(source)
+    if (!derived) return pageData
+
+    pageData.description = derived
+    pageData.frontmatter = {
+      ...pageData.frontmatter,
+      description: derived,
+    }
+    return pageData
+  },
   buildEnd: generateFeed,
   vite: {
     server: {

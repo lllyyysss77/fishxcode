@@ -1,5 +1,7 @@
 ---
 layout: home
+title: FishXCode - Relais AI Coding
+description: Relais AI Coding pour utiliser Claude et Codex sur plusieurs plateformes.
 
 hero:
   name: "FishXCode"
