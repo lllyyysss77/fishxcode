@@ -354,6 +354,7 @@ export default withPwa(defineConfig({
           {
             text: '参考',
             items: [
+              { text: '平台导航', link: '/platform' },
               { text: '工具对比', link: '/compare' },
               { text: '支持的模型', link: '/models' },
               { text: '常见问题', link: '/faq' },
@@ -445,6 +446,7 @@ export default withPwa(defineConfig({
           {
             text: 'Reference',
             items: [
+              { text: 'Platform Guide', link: '/en/platform' },
               { text: 'Tool Comparison', link: '/en/compare' },
               { text: 'Supported Models', link: '/en/models' },
               { text: 'FAQ', link: '/en/faq' },
@@ -536,6 +538,7 @@ export default withPwa(defineConfig({
           {
             text: 'Référence',
             items: [
+              { text: 'Guide plateforme', link: '/fr/platform' },
               { text: 'Comparaison des outils', link: '/fr/compare' },
               { text: 'Modèles supportés', link: '/fr/models' },
               { text: 'FAQ', link: '/fr/faq' },
@@ -627,6 +630,7 @@ export default withPwa(defineConfig({
           {
             text: 'Referencia',
             items: [
+              { text: 'Guía de plataforma', link: '/es/platform' },
               { text: 'Comparación de herramientas', link: '/es/compare' },
               { text: 'Modelos soportados', link: '/es/models' },
               { text: 'Preguntas frecuentes', link: '/es/faq' },
@@ -718,6 +722,7 @@ export default withPwa(defineConfig({
           {
             text: 'Referência',
             items: [
+              { text: 'Guia da plataforma', link: '/pt/platform' },
               { text: 'Comparação de ferramentas', link: '/pt/compare' },
               { text: 'Modelos suportados', link: '/pt/models' },
               { text: 'Perguntas frequentes', link: '/pt/faq' },
