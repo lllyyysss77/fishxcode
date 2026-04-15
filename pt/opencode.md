@@ -9,7 +9,7 @@ npm install -g opencode-ai@latest
 ```
 
 ```bash [brew]
-brew install opencode
+brew install anomalyco/tap/opencode
 ```
 
 ```bash [scoop]
