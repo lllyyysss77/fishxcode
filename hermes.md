@@ -150,7 +150,7 @@ hermes
 也可以直接发起一条测试消息：
 
 ```bash
-hermes chat "用一句话回复：FishXCode 已连接"
+hermes chat -q "用一句话回复：FishXCode 已连接"
 ```
 
 如果你已经配置成功，在会话内还可以用 `/model` 切换到已经接入过的模型。
@@ -168,7 +168,7 @@ hermes config check
 ```
 
 ```bash
-hermes chat "请只回复 ok"
+hermes chat -q "请只回复 ok" -Q
 ```
 
 如果最后一条命令能正常返回内容，说明 FishXCode 接入已经生效。

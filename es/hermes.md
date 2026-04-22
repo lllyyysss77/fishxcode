@@ -142,7 +142,7 @@ hermes
 O envía un mensaje de prueba rápido:
 
 ```bash
-hermes chat "Responde en una frase: FishXCode está conectado"
+hermes chat -q "Responde en una frase: FishXCode está conectado"
 ```
 
 Si la configuración ya funciona, también puedes cambiar a otro modelo configurado dentro de la sesión con `/model`.
@@ -160,7 +160,7 @@ hermes config check
 ```
 
 ```bash
-hermes chat "Responde solo ok"
+hermes chat -q "Responde solo ok" -Q
 ```
 
 Si el último comando devuelve una respuesta normal, la integración con FishXCode está funcionando.
