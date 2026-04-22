@@ -32,7 +32,7 @@ A revenda do serviço ou qualquer uso comercial não autorizado também são pro
 
 ## 5. Cobrança e reembolsos
 
-O serviço opera com base em créditos pré-pagos. Não serão realizados reembolsos, exceto em casos de erro de cobrança decorrente de falha do sistema. Qualquer contestação de cobrança deverá ser comunicada dentro do prazo de sete (7) dias. O usuário é o único responsável pelo pagamento de todos os tributos aplicáveis.
+O serviço opera com base em créditos pré-pagos. Reembolsos de saldo recarregado, reembolsos e conversões de pacotes Codex, bem como as regras aplicáveis aos pacotes especiais do Claude, são regidos pela [Política de reembolso](/pt/refund). Em caso de erro de cobrança decorrente de falha do sistema FishXCode, o usuário poderá entrar em contato com o suporte no prazo de sete (7) dias a partir do incidente. O usuário é o único responsável pelo pagamento de todos os tributos aplicáveis.
 
 ## 6. Dados e privacidade
 

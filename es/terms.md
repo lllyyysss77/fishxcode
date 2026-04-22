@@ -32,7 +32,7 @@ Asimismo, se prohíbe la reventa del servicio o cualquier uso comercial no autor
 
 ## 5. Facturación y reembolsos
 
-El servicio opera bajo un modelo de créditos prepagados. No se realizarán reembolsos, salvo en casos de error de facturación atribuible a un fallo del sistema. Cualquier reclamación de facturación deberá comunicarse dentro de un plazo de siete (7) días. El usuario es el único responsable del pago de todos los impuestos aplicables.
+El servicio opera bajo un modelo de créditos prepagados. Los reembolsos del saldo recargado, los reembolsos y conversiones de paquetes Codex, así como las reglas aplicables a los paquetes especiales de Claude, se rigen por la [Política de reembolso](/es/refund). En caso de error de facturación atribuible a un fallo del sistema de FishXCode, el usuario podrá contactar con soporte dentro del plazo de siete (7) días desde el incidente. El usuario es el único responsable del pago de todos los impuestos aplicables.
 
 ## 6. Datos y privacidad
 

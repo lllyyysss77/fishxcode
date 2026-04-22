@@ -320,6 +320,7 @@ export default withPwa(defineConfig({
                   { text: '常见问题', link: '/faq' },
                   { text: '更新日志', link: '/changelog' },
                   { text: '用户协议', link: '/terms' },
+                  { text: '退款政策', link: '/refund' },
                   { text: '隐私政策', link: '/privacy' }
                 ]
               },
@@ -360,6 +361,7 @@ export default withPwa(defineConfig({
               { text: '常见问题', link: '/faq' },
               { text: '更新日志', link: '/changelog' },
               { text: '用户协议', link: '/terms' },
+              { text: '退款政策', link: '/refund' },
               { text: '隐私政策', link: '/privacy' }
             ]
           }
@@ -412,6 +414,7 @@ export default withPwa(defineConfig({
                   { text: 'FAQ', link: '/en/faq' },
                   { text: 'Changelog', link: '/en/changelog' },
                   { text: 'Terms', link: '/en/terms' },
+                  { text: 'Refund Policy', link: '/en/refund' },
                   { text: 'Privacy', link: '/en/privacy' }
                 ]
               },
@@ -452,6 +455,7 @@ export default withPwa(defineConfig({
               { text: 'FAQ', link: '/en/faq' },
               { text: 'Changelog', link: '/en/changelog' },
               { text: 'Terms', link: '/en/terms' },
+              { text: 'Refund Policy', link: '/en/refund' },
               { text: 'Privacy', link: '/en/privacy' }
             ]
           }
@@ -504,6 +508,7 @@ export default withPwa(defineConfig({
                   { text: 'FAQ', link: '/fr/faq' },
                   { text: 'Journal des modifications', link: '/fr/changelog' },
                   { text: 'Conditions', link: '/fr/terms' },
+                  { text: 'Remboursement', link: '/fr/refund' },
                   { text: 'Confidentialité', link: '/fr/privacy' }
                 ]
               },
@@ -544,6 +549,7 @@ export default withPwa(defineConfig({
               { text: 'FAQ', link: '/fr/faq' },
               { text: 'Journal des modifications', link: '/fr/changelog' },
               { text: 'Conditions', link: '/fr/terms' },
+              { text: 'Remboursement', link: '/fr/refund' },
               { text: 'Confidentialité', link: '/fr/privacy' }
             ]
           }
@@ -596,6 +602,7 @@ export default withPwa(defineConfig({
                   { text: 'Preguntas frecuentes', link: '/es/faq' },
                   { text: 'Registro de cambios', link: '/es/changelog' },
                   { text: 'Términos', link: '/es/terms' },
+                  { text: 'Reembolso', link: '/es/refund' },
                   { text: 'Privacidad', link: '/es/privacy' }
                 ]
               },
@@ -636,6 +643,7 @@ export default withPwa(defineConfig({
               { text: 'Preguntas frecuentes', link: '/es/faq' },
               { text: 'Registro de cambios', link: '/es/changelog' },
               { text: 'Términos', link: '/es/terms' },
+              { text: 'Reembolso', link: '/es/refund' },
               { text: 'Privacidad', link: '/es/privacy' }
             ]
           }
@@ -688,6 +696,7 @@ export default withPwa(defineConfig({
                   { text: 'Perguntas frequentes', link: '/pt/faq' },
                   { text: 'Registro de alterações', link: '/pt/changelog' },
                   { text: 'Termos', link: '/pt/terms' },
+                  { text: 'Reembolso', link: '/pt/refund' },
                   { text: 'Privacidade', link: '/pt/privacy' }
                 ]
               },
@@ -728,6 +737,7 @@ export default withPwa(defineConfig({
               { text: 'Perguntas frequentes', link: '/pt/faq' },
               { text: 'Registro de alterações', link: '/pt/changelog' },
               { text: 'Termos', link: '/pt/terms' },
+              { text: 'Reembolso', link: '/pt/refund' },
               { text: 'Privacidade', link: '/pt/privacy' }
             ]
           }

@@ -93,6 +93,7 @@ After logging in, all operations are centralized in the console. Use the followi
 | FAQ | `/faq` | Frequently asked questions and troubleshooting |
 | Changelog | `/changelog` | Version update records |
 | Terms of Service | `/terms` | Platform terms and conditions |
+| Refund Policy | `/refund` | Top-up refunds, package refunds/conversions, and after-sales compensation rules |
 | Privacy Policy | `/privacy` | Privacy notice |
 
 ::: tip In a Nutshell

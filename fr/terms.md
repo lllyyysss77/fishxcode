@@ -32,7 +32,7 @@ La revente du service ou toute utilisation commerciale non autorisée sont égal
 
 ## 5. Facturation et remboursements
 
-Le service fonctionne sur la base de crédits prépayés. Aucun remboursement ne sera accordé, sauf en cas d'erreur de facturation imputable à un dysfonctionnement du système. Tout litige de facturation doit être signalé dans un délai de sept (7) jours. L'utilisateur est seul responsable du paiement de l'ensemble des taxes applicables.
+Le service fonctionne sur la base de crédits prépayés. Les remboursements du solde rechargé, les remboursements et conversions des forfaits Codex, ainsi que les règles applicables aux forfaits spéciaux Claude sont régis par la [Politique de remboursement](/fr/refund). En cas d'erreur de facturation imputable à un dysfonctionnement du système FishXCode, l'utilisateur peut contacter le support dans un délai de sept (7) jours à compter de l'incident. L'utilisateur est seul responsable du paiement de l'ensemble des taxes applicables.
 
 ## 6. Données et confidentialité
 

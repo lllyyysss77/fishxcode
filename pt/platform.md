@@ -93,6 +93,7 @@ Após o login, todas as operações são realizadas no console. Localize rapidam
 | FAQ | `/faq` | Perguntas frequentes e solução de problemas |
 | Changelog | `/changelog` | Registro de atualizações de versão |
 | Termos de uso | `/terms` | Termos da plataforma |
+| Política de reembolso | `/refund` | Reembolso de recarga, reembolso/conversão de pacotes e regras de compensação |
 | Política de privacidade | `/privacy` | Declaração de privacidade |
 
 ::: tip Em resumo

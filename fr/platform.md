@@ -93,6 +93,7 @@ Après connexion, toutes les opérations sont centralisées dans la console. Ret
 | FAQ | `/faq` | Questions fréquentes et dépannage |
 | Journal des modifications | `/changelog` | Historique des mises à jour |
 | Conditions d'utilisation | `/terms` | Conditions de la plateforme |
+| Politique de remboursement | `/refund` | Remboursement du solde, remboursement/conversion des forfaits et règles de compensation |
 | Politique de confidentialité | `/privacy` | Informations relatives à la confidentialité |
 
 ::: tip En résumé

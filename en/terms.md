@@ -39,7 +39,8 @@ FishXCode grants you a limited, non-exclusive, non-transferable license. **The f
 ## 5. Fees, Payment & Refunds
 
 - The Service uses a prepaid credit model.
-- **Purchased credits are generally non-refundable.** If billing errors occur due to FishXCode system faults, contact support within 7 days for review.
+- Refunds for topped-up balance, Codex package refunds and conversions, and after-sales arrangements for special Claude packages are governed by the [Refund Policy](/en/refund).
+- If billing errors occur due to FishXCode system faults, you may contact support within 7 days of the incident for review.
 - You are responsible for all applicable taxes.
 
 ## 6. Data & Privacy
