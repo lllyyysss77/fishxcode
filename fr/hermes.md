@@ -10,19 +10,28 @@ Hermes Agent est un agent IA généraliste de Nous Research. Il prend en charge 
 
 ## Prérequis
 
-- Hermes installé
 - Clé API FishXCode ([Obtenir depuis la console](https://fishxcode.com/console/token))
+- `git` disponible sur votre machine
 
 ## Installer Hermes
 
 ::: info Environnement requis
 - macOS / Linux / WSL2
-- Windows natif n'est pas pris en charge ; WSL2 est recommandé
+- L'installation via PowerShell est possible sous Windows, mais WSL2 reste recommandé
+- L'installateur gère automatiquement Python, Node.js, ripgrep et ffmpeg
 :::
 
-```bash
+::: code-group
+
+```bash [Installateur officiel]
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
 ```
+
+```powershell [Windows PowerShell]
+irm https://res1.hermesagent.org.cn/install.ps1 | iex
+```
+
+:::
 
 Après l'installation, rechargez la configuration de votre shell :
 
@@ -36,9 +45,23 @@ Si vous utilisez `bash`, exécutez :
 source ~/.bashrc
 ```
 
+Si vous utilisez Windows PowerShell, fermez simplement le terminal puis rouvrez-le.
+
 ## Configurer FishXCode
 
 Hermes recommande officiellement d'utiliser `hermes model` pour la configuration interactive. Avec FishXCode, choisissez **Custom endpoint**, car FishXCode fournit une API compatible OpenAI.
+
+Si vous souhaitez effectuer toute la configuration post-installation en une seule fois, vous pouvez aussi lancer :
+
+```bash
+hermes setup
+```
+
+Si vous souhaitez seulement configurer les permissions des outils, lancez :
+
+```bash
+hermes tools
+```
 
 ### Méthode 1 : Configuration interactive avec `hermes model` (Recommandée)
 
@@ -53,10 +76,14 @@ Renseignez les champs comme suit :
 - Provider : `Custom endpoint (self-hosted / VLLM / etc.)`
 - API base URL : `https://fishxcode.com/v1`
 - API key : votre token FishXCode
-- Model name : `gpt-5`
-- Context length : laissez vide, ou indiquez la taille de contexte réelle
+- Model name : `gpt-5.4`
+- Context length : utilisez au minimum `65536`
 
 Après la configuration, Hermes écrit le modèle, le provider et l'endpoint dans `~/.hermes/config.yaml`.
+
+::: warning Important
+Hermes attend un modèle avec au moins `64K` de contexte pour les workflows d'agent réels à plusieurs étapes. Pour un endpoint personnalisé, choisissez donc un modèle et une fenêtre de contexte conformes à cette exigence.
+:::
 
 ### Méthode 2 : Modifier le fichier de configuration manuellement
 
@@ -78,7 +105,7 @@ Puis écrivez ceci dans `~/.hermes/config.yaml` :
 
 ```yaml
 model:
-  default: gpt-5
+  default: gpt-5.4
   provider: custom
   base_url: https://fishxcode.com/v1
 ```
@@ -101,7 +128,7 @@ model:
 ```
 
 ::: warning Remarque
-Cela suppose que le modèle est disponible via l'endpoint compatible OpenAI de FishXCode. Si vous n'êtes pas sûr de l'identifiant exact du modèle, consultez d'abord la page [Modèles pris en charge](/fr/models), puis renseignez le champ `default`.
+Cela suppose que le modèle est disponible via l'endpoint compatible OpenAI de FishXCode et qu'il respecte l'exigence minimale de contexte de Hermes. Si vous n'êtes pas sûr de l'identifiant exact du modèle, consultez d'abord la page [Modèles pris en charge](/fr/models), puis renseignez le champ `default`.
 :::
 
 ## Démarrer Hermes
@@ -154,9 +181,10 @@ Vérifiez dans cet ordre :
 
 1. Assurez-vous que `base_url` est `https://fishxcode.com/v1`
 2. Assurez-vous que le token provient bien de la [console FishXCode](https://fishxcode.com/console/token)
-3. Assurez-vous que `model.default` est un identifiant de modèle valide, par exemple `gpt-5`
-4. Exécutez `hermes config check` et `hermes doctor` pour voir l'erreur exacte
+3. Assurez-vous que `model.default` est un identifiant de modèle valide, par exemple `gpt-5.4`
+4. Assurez-vous que le contexte du modèle est au moins de `65536`
+5. Exécutez `hermes config check` et `hermes doctor` pour voir l'erreur exacte
 
 ### Puis-je installer Hermes directement sur Windows ?
 
-Au 22 avril 2026, la documentation officielle de Hermes indique toujours que Windows natif n'est pas pris en charge. Utilisez WSL2 à la place.
+Oui, l'installation via PowerShell est possible, mais WSL2 reste l'option la plus sûre pour la compatibilité et un flux de travail de type Unix plus stable.

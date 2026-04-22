@@ -10,19 +10,28 @@ Hermes Agent is a general-purpose AI agent from Nous Research. It supports CLI c
 
 ## Prerequisites
 
-- Hermes installed
 - FishXCode API Key ([Get from Console](https://fishxcode.com/console/token))
+- `git` available on your machine
 
 ## Install Hermes
 
 ::: info Environment Requirements
 - macOS / Linux / WSL2
-- Native Windows is not supported; WSL2 is recommended
+- Windows can be installed through PowerShell, but WSL2 is still the recommended path
+- The installer handles Python, Node.js, ripgrep, and ffmpeg automatically
 :::
 
-```bash
+::: code-group
+
+```bash [Official Installer]
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
 ```
+
+```powershell [Windows PowerShell]
+irm https://res1.hermesagent.org.cn/install.ps1 | iex
+```
+
+:::
 
 After installation, reload your shell config:
 
@@ -36,9 +45,23 @@ If you use `bash`, run:
 source ~/.bashrc
 ```
 
+If you use Windows PowerShell, just close and reopen the terminal.
+
 ## Configure FishXCode
 
 Hermes officially recommends using `hermes model` for interactive setup. For FishXCode, choose **Custom endpoint** because FishXCode provides an OpenAI-compatible API.
+
+If you want to complete the full post-install setup in one pass, you can also run:
+
+```bash
+hermes setup
+```
+
+If you only want to review or reconfigure tool permissions, run:
+
+```bash
+hermes tools
+```
 
 ### Option 1: Interactive setup with `hermes model` (Recommended)
 
@@ -53,10 +76,14 @@ Fill in the prompts like this:
 - Provider: `Custom endpoint (self-hosted / VLLM / etc.)`
 - API base URL: `https://fishxcode.com/v1`
 - API key: your FishXCode token
-- Model name: `gpt-5`
-- Context length: leave blank, or fill in the actual context size
+- Model name: `gpt-5.4`
+- Context length: use at least `65536`
 
 After setup, Hermes writes the model, provider, and endpoint into `~/.hermes/config.yaml`.
+
+::: warning Important
+Hermes expects a model with at least `64K` context for real multi-step agent workflows. For custom endpoints, choose a model and context window that meet or exceed that requirement.
+:::
 
 ### Option 2: Edit the config file manually
 
@@ -78,7 +105,7 @@ Then write the following into `~/.hermes/config.yaml`:
 
 ```yaml
 model:
-  default: gpt-5
+  default: gpt-5.4
   provider: custom
   base_url: https://fishxcode.com/v1
 ```
@@ -101,7 +128,7 @@ model:
 ```
 
 ::: warning Note
-This assumes the model is available through FishXCode's OpenAI-compatible endpoint. If you are not sure about the exact model ID, check the [Supported Models](/en/models) page first, then fill in the `default` field.
+This assumes the model is available through FishXCode's OpenAI-compatible endpoint and meets Hermes' minimum context requirement. If you are not sure about the exact model ID, check the [Supported Models](/en/models) page first, then fill in the `default` field.
 :::
 
 ## Start Using Hermes
@@ -154,9 +181,10 @@ Check in this order:
 
 1. Make sure `base_url` is `https://fishxcode.com/v1`
 2. Make sure the token comes from the [FishXCode Console](https://fishxcode.com/console/token)
-3. Make sure `model.default` is a valid model ID such as `gpt-5`
-4. Run `hermes config check` and `hermes doctor` for the exact error
+3. Make sure `model.default` is a valid model ID such as `gpt-5.4`
+4. Make sure the model context is at least `65536`
+5. Run `hermes config check` and `hermes doctor` for the exact error
 
 ### Can I install Hermes directly on Windows?
 
-As of April 22, 2026, the official Hermes documentation still states that native Windows is not supported. Use WSL2 instead.
+Yes, PowerShell installation is possible, but WSL2 is still the safer default for compatibility and a smoother Unix-style workflow.
