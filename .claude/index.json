@@ -43,11 +43,11 @@
         "pages": [
           "index.md", "start.md", "account.md", "zcf.md",
           "codex.md", "roocode.md", "qwencode.md",
-          "droid.md", "opencode.md", "openclaw.md",
+          "droid.md", "opencode.md", "hermes.md", "openclaw.md",
           "models.md", "compare.md", "faq.md", "changelog.md",
           "terms.md", "privacy.md"
         ],
-        "totalMarkdownFiles": 85
+        "totalMarkdownFiles": 86
       },
       "claudeMd": "CLAUDE.md"
     },
