@@ -41,13 +41,13 @@
       "contentPages": {
         "languages": ["zh-CN", "en-US", "fr-FR", "es-ES", "pt-BR"],
         "pages": [
-          "index.md", "start.md", "account.md", "zcf.md",
+          "index.md", "start.md", "claude-desktop.md", "account.md", "zcf.md",
           "codex.md", "roocode.md", "qwencode.md",
-          "droid.md", "opencode.md", "hermes.md", "openclaw.md",
+          "droid.md", "opencode.md", "hermes.md", "openclaw.md", "gpt-image-2.md",
           "models.md", "compare.md", "faq.md", "changelog.md",
           "terms.md", "privacy.md"
         ],
-        "totalMarkdownFiles": 86
+        "totalMarkdownFiles": 96
       },
       "claudeMd": "CLAUDE.md"
     },

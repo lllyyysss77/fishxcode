@@ -301,6 +301,7 @@ export default withPwa(defineConfig({
             text: '工具指南',
             items: [
               { text: 'Claude Code', link: '/start' },
+              { text: 'Claude Desktop', link: '/claude-desktop' },
               { text: 'OpenAI Codex', link: '/codex' },
               { text: 'Cursor', link: '/cursor' },
               { text: 'RooCode', link: '/roocode' },
@@ -343,6 +344,7 @@ export default withPwa(defineConfig({
             items: [
               { text: '账户注册', link: '/account' },
               { text: 'Claude Code', link: '/start' },
+              { text: 'Claude Desktop', link: '/claude-desktop' },
               { text: 'ZCF 快速接入', link: '/zcf' },
               { text: 'OpenAI Codex', link: '/codex' },
               { text: 'Cursor', link: '/cursor' },
@@ -360,6 +362,7 @@ export default withPwa(defineConfig({
               { text: '平台导航', link: '/platform' },
               { text: '工具对比', link: '/compare' },
               { text: '支持的模型', link: '/models' },
+              { text: 'GPT-Image-2 绘图', link: '/gpt-image-2' },
               { text: '常见问题', link: '/faq' },
               { text: '更新日志', link: '/changelog' },
               { text: '用户协议', link: '/terms' },
@@ -397,6 +400,7 @@ export default withPwa(defineConfig({
             text: 'Tool Guides',
             items: [
               { text: 'Claude Code', link: '/en/start' },
+              { text: 'Claude Desktop', link: '/en/claude-desktop' },
               { text: 'OpenAI Codex', link: '/en/codex' },
               { text: 'Cursor', link: '/en/cursor' },
               { text: 'RooCode', link: '/en/roocode' },
@@ -439,6 +443,7 @@ export default withPwa(defineConfig({
             items: [
               { text: 'Account Setup', link: '/en/account' },
               { text: 'Claude Code', link: '/en/start' },
+              { text: 'Claude Desktop', link: '/en/claude-desktop' },
               { text: 'ZCF Quick Setup', link: '/en/zcf' },
               { text: 'OpenAI Codex', link: '/en/codex' },
               { text: 'Cursor', link: '/en/cursor' },
@@ -456,6 +461,7 @@ export default withPwa(defineConfig({
               { text: 'Platform Guide', link: '/en/platform' },
               { text: 'Tool Comparison', link: '/en/compare' },
               { text: 'Supported Models', link: '/en/models' },
+              { text: 'GPT-Image-2 Guide', link: '/en/gpt-image-2' },
               { text: 'FAQ', link: '/en/faq' },
               { text: 'Changelog', link: '/en/changelog' },
               { text: 'Terms', link: '/en/terms' },
@@ -493,6 +499,7 @@ export default withPwa(defineConfig({
             text: 'Guide des outils',
             items: [
               { text: 'Claude Code', link: '/fr/start' },
+              { text: 'Claude Desktop', link: '/fr/claude-desktop' },
               { text: 'OpenAI Codex', link: '/fr/codex' },
               { text: 'Cursor', link: '/fr/cursor' },
               { text: 'RooCode', link: '/fr/roocode' },
@@ -535,6 +542,7 @@ export default withPwa(defineConfig({
             items: [
               { text: 'Création de compte', link: '/fr/account' },
               { text: 'Claude Code', link: '/fr/start' },
+              { text: 'Claude Desktop', link: '/fr/claude-desktop' },
               { text: 'ZCF Configuration', link: '/fr/zcf' },
               { text: 'OpenAI Codex', link: '/fr/codex' },
               { text: 'Cursor', link: '/fr/cursor' },
@@ -552,6 +560,7 @@ export default withPwa(defineConfig({
               { text: 'Guide plateforme', link: '/fr/platform' },
               { text: 'Comparaison des outils', link: '/fr/compare' },
               { text: 'Modèles supportés', link: '/fr/models' },
+              { text: 'Guide GPT-Image-2', link: '/fr/gpt-image-2' },
               { text: 'FAQ', link: '/fr/faq' },
               { text: 'Journal des modifications', link: '/fr/changelog' },
               { text: 'Conditions', link: '/fr/terms' },
@@ -589,6 +598,7 @@ export default withPwa(defineConfig({
             text: 'Guía de herramientas',
             items: [
               { text: 'Claude Code', link: '/es/start' },
+              { text: 'Claude Desktop', link: '/es/claude-desktop' },
               { text: 'OpenAI Codex', link: '/es/codex' },
               { text: 'Cursor', link: '/es/cursor' },
               { text: 'RooCode', link: '/es/roocode' },
@@ -631,6 +641,7 @@ export default withPwa(defineConfig({
             items: [
               { text: 'Registro de cuenta', link: '/es/account' },
               { text: 'Claude Code', link: '/es/start' },
+              { text: 'Claude Desktop', link: '/es/claude-desktop' },
               { text: 'ZCF Configuración', link: '/es/zcf' },
               { text: 'OpenAI Codex', link: '/es/codex' },
               { text: 'Cursor', link: '/es/cursor' },
@@ -648,6 +659,7 @@ export default withPwa(defineConfig({
               { text: 'Guía de plataforma', link: '/es/platform' },
               { text: 'Comparación de herramientas', link: '/es/compare' },
               { text: 'Modelos soportados', link: '/es/models' },
+              { text: 'Guía GPT-Image-2', link: '/es/gpt-image-2' },
               { text: 'Preguntas frecuentes', link: '/es/faq' },
               { text: 'Registro de cambios', link: '/es/changelog' },
               { text: 'Términos', link: '/es/terms' },
@@ -685,6 +697,7 @@ export default withPwa(defineConfig({
             text: 'Guias de ferramentas',
             items: [
               { text: 'Claude Code', link: '/pt/start' },
+              { text: 'Claude Desktop', link: '/pt/claude-desktop' },
               { text: 'OpenAI Codex', link: '/pt/codex' },
               { text: 'Cursor', link: '/pt/cursor' },
               { text: 'RooCode', link: '/pt/roocode' },
@@ -727,6 +740,7 @@ export default withPwa(defineConfig({
             items: [
               { text: 'Configuração de conta', link: '/pt/account' },
               { text: 'Claude Code', link: '/pt/start' },
+              { text: 'Claude Desktop', link: '/pt/claude-desktop' },
               { text: 'ZCF Configuração', link: '/pt/zcf' },
               { text: 'OpenAI Codex', link: '/pt/codex' },
               { text: 'Cursor', link: '/pt/cursor' },
@@ -744,6 +758,7 @@ export default withPwa(defineConfig({
               { text: 'Guia da plataforma', link: '/pt/platform' },
               { text: 'Comparação de ferramentas', link: '/pt/compare' },
               { text: 'Modelos suportados', link: '/pt/models' },
+              { text: 'Guia GPT-Image-2', link: '/pt/gpt-image-2' },
               { text: 'Perguntas frequentes', link: '/pt/faq' },
               { text: 'Registro de alterações', link: '/pt/changelog' },
               { text: 'Termos', link: '/pt/terms' },
