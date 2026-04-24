@@ -6,12 +6,14 @@ Hermes Agent est un agent IA généraliste de Nous Research. Il prend en charge 
 - Site officiel : [https://hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com)
 - Documentation : [https://hermes-agent.nousresearch.com/docs](https://hermes-agent.nousresearch.com/docs)
 - GitHub : [https://github.com/NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)
+- Web3Hermes : [https://web3hermes.com](https://web3hermes.com)
 :::
 
 ## Prérequis
 
 - Clé API FishXCode ([Obtenir depuis la console](https://fishxcode.com/console/token))
 - `git` disponible sur votre machine
+- `python3` disponible sur votre machine
 
 ## Installer Hermes
 
@@ -20,6 +22,26 @@ Hermes Agent est un agent IA généraliste de Nous Research. Il prend en charge 
 - L'installation via PowerShell est possible sous Windows, mais WSL2 reste recommandé
 - L'installateur gère automatiquement Python, Node.js, ripgrep et ffmpeg
 :::
+
+### Recommandé : installer Web3Hermes
+
+Si vous souhaitez une interface web pour navigateur de bureau optimisée pour les utilisateurs en Chine continentale, installez d'abord [Web3Hermes](https://web3hermes.com). C'est une interface web légère basée sur Hermes Agent. README officiel : [Web3CZ/Web3Hermes](https://raw.githubusercontent.com/Web3CZ/Web3Hermes/refs/heads/main/README.md).
+
+```bash
+git clone https://github.com/Web3CZ/Web3Hermes.git
+cd Web3Hermes
+python3 bootstrap.py
+```
+
+Vous pouvez aussi utiliser le script de démarrage depuis le dossier du projet :
+
+```bash
+./start.sh
+```
+
+Le service démarre par défaut sur `http://127.0.0.1:8787`.
+
+### Installer Hermes Agent CLI
 
 ::: code-group
 

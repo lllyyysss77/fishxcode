@@ -168,6 +168,22 @@ Check these first:
 
 If it still does not appear after upgrading, fully quit Claude Desktop and reopen it.
 
+### What if Windows shows `Virtual Machine Platform not available`?
+
+If Claude Desktop shows:
+
+```text
+Claude's workspace requires the Virtual Machine Platform on Windows. Enable this feature, then restart.
+```
+
+It means **Virtual Machine Platform** is not enabled on Windows. Open PowerShell as Administrator and run:
+
+```powershell
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+After the command completes, restart Windows and reopen Claude Desktop.
+
 ### Why can't I see Cowork / Code after configuring it?
 
 Check in this order:

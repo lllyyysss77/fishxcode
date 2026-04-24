@@ -168,6 +168,22 @@ Vérifiez d'abord :
 
 Si l'entrée n'apparaît toujours pas après mise à jour, quittez complètement Claude Desktop puis relancez-le.
 
+### Que faire si Windows affiche `Virtual Machine Platform not available` ?
+
+Si Claude Desktop affiche :
+
+```text
+Claude's workspace requires the Virtual Machine Platform on Windows. Enable this feature, then restart.
+```
+
+Cela signifie que **Virtual Machine Platform** n'est pas activé sur Windows. Ouvrez PowerShell en tant qu'administrateur et exécutez :
+
+```powershell
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+Une fois la commande terminée, redémarrez Windows puis rouvrez Claude Desktop.
+
 ### Pourquoi ne vois-je pas Cowork / Code après la configuration ?
 
 Vérifiez dans cet ordre :

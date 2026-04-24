@@ -170,6 +170,22 @@ claude-haiku-4-5-20251001
 
 如果升级后仍然找不到，先彻底退出 Claude Desktop，再重新打开一次。
 
+### Windows 提示 `Virtual Machine Platform not available` 怎么办？
+
+如果 Claude Desktop 提示：
+
+```text
+Claude's workspace requires the Virtual Machine Platform on Windows. Enable this feature, then restart.
+```
+
+说明当前 Windows 没有启用 **Virtual Machine Platform**。请用管理员身份打开 PowerShell，执行：
+
+```powershell
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+执行完成后重启 Windows，再重新打开 Claude Desktop。
+
 ### 为什么我配置完后还是看不到 Cowork / Code？
 
 按下面顺序排查：

@@ -168,6 +168,22 @@ Comprueba primero:
 
 Si sigue sin aparecer tras actualizar, cierra completamente Claude Desktop y vuelve a abrirlo.
 
+### ¿Qué hago si Windows muestra `Virtual Machine Platform not available`?
+
+Si Claude Desktop muestra:
+
+```text
+Claude's workspace requires the Virtual Machine Platform on Windows. Enable this feature, then restart.
+```
+
+Significa que **Virtual Machine Platform** no está activado en Windows. Abre PowerShell como administrador y ejecuta:
+
+```powershell
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+Cuando termine el comando, reinicia Windows y vuelve a abrir Claude Desktop.
+
 ### ¿Por qué no veo Cowork / Code después de configurarlo?
 
 Revísalo en este orden:
