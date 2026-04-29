@@ -120,6 +120,30 @@ export ANTHROPIC_MODEL=claude-sonnet-4-5-20250929
 
 解决方法：前往 [控制台](https://fishxcode.com/console/token) 确认 Token 状态，重新复制粘贴。
 
+### 如何查看和理解错误日志？
+
+进入 [控制台 → 使用日志](https://fishxcode.com/console/log)，将日志类型切换为 **错误日志**，可按时间、模型、Token、分组、请求 ID、错误消息和状态码筛选。
+
+::: tip 排查建议
+- 优先复制接口响应或日志中的 `request_id`，在使用日志中精确搜索同一次请求
+- 用“错误消息”搜索 `content` 中的关键词，例如 `Invalid token`、`Upstream request failed`
+- 用“状态码”快速聚合问题类型，例如 `401`、`429`、`502`、`503`、`524`
+:::
+
+常见错误消息含义：
+
+| 错误日志内容 | 含义 | 建议处理 |
+|-------------|------|----------|
+| `status_code=401, Invalid token` | Token 无效、复制错误或已失效 | 重新复制控制台 Token，确认没有多余空格 |
+| `status_code=429, Account RPM limit exceeded` | 上游账号触发每分钟请求限制 | 降低并发和重试频率，稍后再试 |
+| `status_code=502, Upstream request failed` / `bad response status code 502` | 上游服务或中间网络返回异常 | 稍后重试；若持续出现，切换模型或联系支持并提供 `request_id` |
+| `status_code=502, The origin web server returned an invalid or incomplete response to Cloudflare` | 上游源站经 Cloudflare 返回异常响应 | 通常为临时上游故障，稍后重试 |
+| `status_code=500, upstream error: do request failed` | 请求发送到上游时失败，常见于网络连接或上游临时不可达 | 稍后重试；持续出现时提供 `request_id` 给支持排查 |
+| `status_code=520, bad response status code 520` | Cloudflare 返回未知错误，通常表示上游响应异常或连接被中断 | 稍后重试；若集中出现，按上游故障处理 |
+| `status_code=524` / `bad response status code 524` | 上游响应超过 Cloudflare 120 秒读取超时 | 减少上下文或输出长度，避免长时间阻塞请求 |
+| `status_code=503, model gpt-image-2 is only supported on /v1/images/generations and /v1/images/edits` | 图像模型被用于错误接口 | 将图像生成/编辑请求发送到对应 images 接口 |
+| `status_code=500, Image source is a local path that is not readable from this server` | 请求传入了本地图片路径，服务器无法读取 | 改用公网 `http(s)` 图片 URL，或传入 `data:image/...` base64 |
+
 ### 请求超时（Timeout）
 
 可能原因：

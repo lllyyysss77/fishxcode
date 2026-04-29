@@ -15,6 +15,17 @@
 如果你在控制台里看得到模型分组或权限配置，请确保当前 Token 覆盖了 `gpt-image-2`。如果不确定，先新建一个默认可用的 Token 进行测试。
 :::
 
+## 开源可视化工具
+
+如果你不想先写代码，可以直接使用 FishXCode 提供的开源 GPT-Image-2 工具进行测试和出图：
+
+- 在线体验：[https://fishxcode-gpt-image-2.lovable.app/](https://fishxcode-gpt-image-2.lovable.app/)
+- 开源仓库：[https://github.com/fishxcode/gpt-image-2](https://github.com/fishxcode/gpt-image-2)
+
+::: tip 使用建议
+先在工具中验证 Token、提示词和图片参数是否可用，再把同样的参数迁移到自己的代码或工作流中。
+:::
+
 ## 方式一：使用 Images API 生成图片
 
 这是最直接的方式，对应 OpenAI 兼容的图片生成接口。

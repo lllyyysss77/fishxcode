@@ -15,6 +15,17 @@ Obtenir votre token :
 Si votre console affiche des groupes de modèles ou des permissions, vérifiez que votre token couvre bien `gpt-image-2`. En cas de doute, créez un nouveau token par défaut pour tester.
 :::
 
+## Outil visuel open source
+
+Si vous ne voulez pas commencer par écrire du code, vous pouvez utiliser l'outil GPT-Image-2 open source de FishXCode pour tester vos prompts et générer des images directement :
+
+- Démo en ligne : [https://fishxcode-gpt-image-2.lovable.app/](https://fishxcode-gpt-image-2.lovable.app/)
+- Dépôt GitHub : [https://github.com/fishxcode/gpt-image-2](https://github.com/fishxcode/gpt-image-2)
+
+::: tip Conseil
+Utilisez d'abord l'outil pour vérifier votre token, votre prompt et vos paramètres d'image, puis réutilisez les mêmes paramètres dans votre code ou votre workflow.
+:::
+
 ## Méthode 1 : Générer des images via l'Images API
 
 C'est l'approche la plus directe, basée sur l'endpoint de génération d'images compatible OpenAI.

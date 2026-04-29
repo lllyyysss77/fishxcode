@@ -120,6 +120,30 @@ export ANTHROPIC_MODEL=claude-sonnet-4-5-20250929
 
 Solucao: Acesse o [console](https://fishxcode.com/console/token), verifique o status do seu token e copie-o novamente.
 
+### Como ler os logs de erro?
+
+Acesse [Console -> Logs de uso](https://fishxcode.com/console/log), selecione o tipo **Logs de erro** e filtre por periodo, modelo, token, grupo, request ID, mensagem de erro ou codigo de status.
+
+::: tip Dicas de diagnostico
+- Copie primeiro o `request_id` da resposta da API ou do log e pesquise exatamente essa requisicao
+- Use o filtro de mensagem de erro para buscar palavras-chave em `content`, como `Invalid token` ou `Upstream request failed`
+- Use o codigo de status para agrupar problemas rapidamente, como `401`, `429`, `502`, `503` ou `524`
+:::
+
+Mensagens de erro comuns:
+
+| Conteudo do log | Significado | O que fazer |
+|-----------------|-------------|-------------|
+| `status_code=401, Invalid token` | O token e invalido, foi copiado incorretamente ou expirou | Copie o token novamente no console e remova espacos extras |
+| `status_code=429, Account RPM limit exceeded` | A conta upstream atingiu o limite de requisicoes por minuto | Reduza concorrencia e frequencia de retry, depois tente novamente |
+| `status_code=502, Upstream request failed` / `bad response status code 502` | O servico upstream ou a rede retornou erro | Tente mais tarde; se persistir, troque de modelo ou contate o suporte com o `request_id` |
+| `status_code=502, The origin web server returned an invalid or incomplete response to Cloudflare` | A origem upstream retornou resposta invalida via Cloudflare | Geralmente e uma falha temporaria do upstream; tente mais tarde |
+| `status_code=500, upstream error: do request failed` | A requisicao falhou ao ser enviada para o servico upstream, geralmente por rede ou indisponibilidade temporaria | Tente mais tarde; se persistir, envie o `request_id` ao suporte |
+| `status_code=520, bad response status code 520` | A Cloudflare retornou um erro desconhecido, normalmente por resposta upstream anormal ou conexao interrompida | Tente mais tarde; se aparecer com frequencia, trate como incidente upstream |
+| `status_code=524` / `bad response status code 524` | A resposta upstream excedeu o timeout de leitura de 120 segundos da Cloudflare | Reduza o contexto ou o tamanho da saida |
+| `status_code=503, model gpt-image-2 is only supported on /v1/images/generations and /v1/images/edits` | Um modelo de imagem foi chamado pelo endpoint errado | Envie requisicoes de imagem para o endpoint images correspondente |
+| `status_code=500, Image source is a local path that is not readable from this server` | A requisicao usou um caminho local de imagem que o servidor nao consegue ler | Use uma URL `http(s)` publica ou payload base64 `data:image/...` |
+
 ### Tempo limite esgotado (Timeout)
 
 Possiveis causas:
