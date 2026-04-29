@@ -142,7 +142,7 @@ export ANTHROPIC_MODEL=claude-sonnet-4-5-20250929
 | `status_code=520, bad response status code 520` | Cloudflare 返回未知错误，通常表示上游响应异常或连接被中断 | 稍后重试；若集中出现，按上游故障处理 |
 | `status_code=524` / `bad response status code 524` | 上游响应超过 Cloudflare 120 秒读取超时 | 减少上下文或输出长度，避免长时间阻塞请求 |
 | `status_code=503, model gpt-image-2 is only supported on /v1/images/generations and /v1/images/edits` | 图像模型被用于错误接口 | 将图像生成/编辑请求发送到对应 images 接口 |
-| `status_code=500, Image source is a local path that is not readable from this server` | 请求传入了本地图片路径，服务器无法读取 | 改用公网 `http(s)` 图片 URL，或传入 `data:image/...` base64 |
+| `status_code=500, Image source is a local path that is not readable from this server` | 请求中包含上游当前无法读取的本地图片路径，可能导致终端输入无响应 | 前端项目可优先检查 `lock` 系列依赖文件：删除相关锁文件，或移除锁文件中异常的 `png` 字段后重新打开会话；如需继续传图，请改用公网 `http(s)` 图片 URL，或传入 `data:image/...` base64 |
 
 ### 请求超时（Timeout）
 

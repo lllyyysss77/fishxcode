@@ -142,7 +142,7 @@ Mensagens de erro comuns:
 | `status_code=520, bad response status code 520` | A Cloudflare retornou um erro desconhecido, normalmente por resposta upstream anormal ou conexao interrompida | Tente mais tarde; se aparecer com frequencia, trate como incidente upstream |
 | `status_code=524` / `bad response status code 524` | A resposta upstream excedeu o timeout de leitura de 120 segundos da Cloudflare | Reduza o contexto ou o tamanho da saida |
 | `status_code=503, model gpt-image-2 is only supported on /v1/images/generations and /v1/images/edits` | Um modelo de imagem foi chamado pelo endpoint errado | Envie requisicoes de imagem para o endpoint images correspondente |
-| `status_code=500, Image source is a local path that is not readable from this server` | A requisicao usou um caminho local de imagem que o servidor nao consegue ler | Use uma URL `http(s)` publica ou payload base64 `data:image/...` |
+| `status_code=500, Image source is a local path that is not readable from this server` | A requisicao contem um caminho local de imagem que o upstream atual nao consegue ler, o que pode deixar a entrada do terminal sem resposta | Em projetos frontend, verifique primeiro os arquivos de dependencias `lock`: remova os arquivos lock relacionados, ou remova os campos `png` anormais que eles contenham, e reabra a sessao; se ainda precisar enviar imagens, use uma URL `http(s)` publica ou payload base64 `data:image/...` |
 
 ### Tempo limite esgotado (Timeout)
 

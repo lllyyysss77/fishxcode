@@ -142,7 +142,7 @@ Messages d'erreur frequents :
 | `status_code=520, bad response status code 520` | Cloudflare a renvoye une erreur inconnue, souvent liee a une reponse amont anormale ou a une connexion interrompue | Reessayez plus tard ; si cela se repete, traitez-le comme un incident amont |
 | `status_code=524` / `bad response status code 524` | La reponse amont a depasse le delai Cloudflare de 120 secondes | Reduisez le contexte ou la longueur de sortie |
 | `status_code=503, model gpt-image-2 is only supported on /v1/images/generations and /v1/images/edits` | Un modele image a ete appele sur le mauvais endpoint | Envoyez les requetes image vers l'endpoint images correspondant |
-| `status_code=500, Image source is a local path that is not readable from this server` | La requete contient un chemin d'image local inaccessible au serveur | Utilisez une URL `http(s)` publique ou un payload base64 `data:image/...` |
+| `status_code=500, Image source is a local path that is not readable from this server` | La requete contient un chemin d'image local que l'upstream actuel ne peut pas lire, ce qui peut rendre la saisie dans le terminal inactive | Pour les projets frontend, verifiez d'abord les fichiers de dependances `lock` : supprimez les fichiers lock concernes, ou retirez les champs `png` anormaux qu'ils contiennent, puis rouvrez la session ; si vous devez toujours envoyer une image, utilisez une URL `http(s)` publique ou un payload base64 `data:image/...` |
 
 ### Delai d'attente depasse (Timeout)
 
