@@ -117,7 +117,7 @@ Focus on `502`, `503`, `504`, `520`, `521`, `522`, `524`, `Service Unavailable`,
 
 ## Information for Support
 
-In the `console/log` list, you can copy troubleshooting details from the error message with one click. When contacting support, provide the following in one message so the technical team can investigate with less back-and-forth:
+For simple issues, check [Error Logs](/en/error-logs) and [Group Health](/en/group-health) first. If the issue remains unresolved, open the error log details in `console/log` and click the copy icon to copy the troubleshooting details in one click. When contacting support, provide the following in one message so the technical team can investigate with less back-and-forth:
 
 - User ID
 - Time range: when the issue started and when it last appeared

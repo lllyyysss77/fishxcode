@@ -92,7 +92,7 @@ Se `success_rate` de um grupo esta claramente abaixo dos outros, ou `error_count
 
 ## Informacoes para suporte
 
-Na lista `console/log`, voce pode copiar com um clique os detalhes de diagnostico a partir da mensagem de erro. Ao contatar suporte, envie as informacoes abaixo de uma vez para a equipe tecnica investigar com menos ida e volta:
+Para problemas simples, veja primeiro [Explicacao dos logs de erro](/pt/error-logs) e [Status de saude dos grupos](/pt/group-health). Se o problema continuar, abra os detalhes do log de erro em `console/log` e clique no icone de copiar para copiar os detalhes de diagnostico em um clique. Ao contatar suporte, envie as informacoes abaixo de uma vez para a equipe tecnica investigar com menos ida e volta:
 
 - ID do usuario
 - Periodo: quando o problema comecou e ultimo horario em que apareceu

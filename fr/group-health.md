@@ -92,7 +92,7 @@ Si le `success_rate` d'un groupe est clairement plus bas que les autres, ou si `
 
 ## Informations utiles au support
 
-Dans la liste `console/log`, vous pouvez copier en un clic les details de diagnostic depuis le message d'erreur. Quand vous contactez le support, fournissez ces informations en une fois a l'equipe technique pour limiter les allers-retours :
+Pour les problemes simples, consultez d'abord le [guide des journaux d'erreur](/fr/error-logs) et [l'etat de sante des groupes](/fr/group-health). Si le probleme persiste, ouvrez les details du journal d'erreur dans `console/log` et cliquez sur l'icone de copie pour copier les details de diagnostic en un clic. Quand vous contactez le support, fournissez ces informations en une fois a l'equipe technique pour limiter les allers-retours :
 
 - ID utilisateur
 - Periode : debut du probleme et derniere occurrence

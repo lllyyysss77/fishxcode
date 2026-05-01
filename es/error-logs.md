@@ -116,7 +116,7 @@ Revisa `502`, `503`, `504`, `520`, `521`, `522`, `524`, `Service Unavailable` y 
 
 ## Informacion para soporte
 
-En la lista `console/log`, puedes copiar con un clic los detalles de diagnostico desde el mensaje de error. Cuando contactes soporte, aporta estos datos de una vez para que el equipo tecnico pueda investigar con menos idas y vueltas:
+Para problemas simples, consulta primero la [guia de registros de error](/es/error-logs) y el [estado de salud de los grupos](/es/group-health). Si el problema sigue sin resolverse, abre los detalles del registro de error en `console/log` y haz clic en el icono de copiar para copiar los detalles de diagnostico en un clic. Cuando contactes soporte, aporta estos datos de una vez para que el equipo tecnico pueda investigar con menos idas y vueltas:
 
 - ID de usuario
 - Periodo: inicio y ultima aparicion del problema
