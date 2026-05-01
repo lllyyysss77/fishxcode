@@ -130,19 +130,13 @@ Ve a [Consola -> Registros de uso](https://fishxcode.com/console/log), cambia el
 - Usa el codigo de estado para agrupar problemas rapidamente, como `401`, `429`, `502`, `503` o `524`
 :::
 
-Mensajes de error comunes:
+Para ver campos completos, codigos de estado y mensajes frecuentes, consulta la [guia de registros de error](/es/error-logs).
 
-| Contenido del registro | Significado | Que hacer |
-|------------------------|-------------|-----------|
-| `status_code=401, Invalid token` | El token no es valido, se copio mal o expiro | Copia el token de nuevo desde la consola y elimina espacios extra |
-| `status_code=429, Account RPM limit exceeded` | La cuenta upstream alcanzo el limite de solicitudes por minuto | Reduce concurrencia y frecuencia de reintentos, luego intenta mas tarde |
-| `status_code=502, Upstream request failed` / `bad response status code 502` | El servicio upstream o la red devolvio un error | Reintenta mas tarde; si persiste, cambia de modelo o contacta soporte con el `request_id` |
-| `status_code=502, The origin web server returned an invalid or incomplete response to Cloudflare` | El origen upstream devolvio una respuesta invalida a traves de Cloudflare | Normalmente es temporal del upstream; reintenta mas tarde |
-| `status_code=500, upstream error: do request failed` | La solicitud fallo al enviarse al servicio upstream, normalmente por red o indisponibilidad temporal | Reintenta mas tarde; si persiste, envia el `request_id` a soporte |
-| `status_code=520, bad response status code 520` | Cloudflare devolvio un error desconocido, normalmente por respuesta upstream anomala o conexion interrumpida | Reintenta mas tarde; si aparece con frecuencia, tratalo como incidente upstream |
-| `status_code=524` / `bad response status code 524` | La respuesta upstream supero el timeout de lectura de 120 segundos de Cloudflare | Reduce el contexto o la longitud de salida |
-| `status_code=503, model gpt-image-2 is only supported on /v1/images/generations and /v1/images/edits` | Un modelo de imagen se llamo desde el endpoint incorrecto | Envia solicitudes de imagen al endpoint images correspondiente |
-| `status_code=500, Image source is a local path that is not readable from this server` | La solicitud contiene una ruta local de imagen que el upstream actual no puede leer, lo que puede dejar la entrada del terminal sin respuesta | En proyectos frontend, revisa primero los archivos de dependencias `lock`: elimina los archivos lock relacionados, o quita los campos `png` anormales que contengan, y vuelve a abrir la sesion; si aun necesitas enviar imagenes, usa una URL `http(s)` publica o un payload base64 `data:image/...` |
+### Como leer el estado de salud de los grupos?
+
+El estado de salud de los grupos ayuda a saber si el problema es una solicitud aislada o si se concentra en un paquete, modelo o grupo upstream. Revisa primero `success_rate`, `error_count` y `error_reasons`; despues usa el `request_id` del registro individual para cerrar el diagnostico.
+
+La pagina completa, los campos y el flujo de diagnostico estan en [Estado de salud de los grupos](/es/group-health).
 
 ### Tiempo de espera agotado (Timeout)
 

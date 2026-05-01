@@ -127,22 +127,17 @@ export ANTHROPIC_MODEL=claude-sonnet-4-5-20250929
 ::: tip 排查建议
 - 优先复制接口响应或日志中的 `request_id`，在使用日志中精确搜索同一次请求
 - 用“错误消息”搜索 `content` 中的关键词，例如 `Invalid token`、`Upstream request failed`
-- 用“状态码”快速聚合问题类型，例如 `401`、`429`、`502`、`503`、`524`
+- 用“状态码”快速聚合问题类型，例如 `400`、`401`、`403`、`413`、`429`、`500`、`502`、`503`、`504`
+- 如果同一分组集中出现相同错误，优先按分组判断是配置问题、用量问题还是上游可用性问题
 :::
 
-常见错误消息含义：
+完整字段说明、状态码分类和常见错误表请查看 [错误日志说明](/error-logs)。
 
-| 错误日志内容 | 含义 | 建议处理 |
-|-------------|------|----------|
-| `status_code=401, Invalid token` | Token 无效、复制错误或已失效 | 重新复制控制台 Token，确认没有多余空格 |
-| `status_code=429, Account RPM limit exceeded` | 上游账号触发每分钟请求限制 | 降低并发和重试频率，稍后再试 |
-| `status_code=502, Upstream request failed` / `bad response status code 502` | 上游服务或中间网络返回异常 | 稍后重试；若持续出现，切换模型或联系支持并提供 `request_id` |
-| `status_code=502, The origin web server returned an invalid or incomplete response to Cloudflare` | 上游源站经 Cloudflare 返回异常响应 | 通常为临时上游故障，稍后重试 |
-| `status_code=500, upstream error: do request failed` | 请求发送到上游时失败，常见于网络连接或上游临时不可达 | 稍后重试；持续出现时提供 `request_id` 给支持排查 |
-| `status_code=520, bad response status code 520` | Cloudflare 返回未知错误，通常表示上游响应异常或连接被中断 | 稍后重试；若集中出现，按上游故障处理 |
-| `status_code=524` / `bad response status code 524` | 上游响应超过 Cloudflare 120 秒读取超时 | 减少上下文或输出长度，避免长时间阻塞请求 |
-| `status_code=503, model gpt-image-2 is only supported on /v1/images/generations and /v1/images/edits` | 图像模型被用于错误接口 | 将图像生成/编辑请求发送到对应 images 接口 |
-| `status_code=500, Image source is a local path that is not readable from this server` | 请求中包含上游当前无法读取的本地图片路径，可能导致终端输入无响应 | 前端项目可优先检查 `lock` 系列依赖文件：删除相关锁文件，或移除锁文件中异常的 `png` 字段后重新打开会话；如需继续传图，请改用公网 `http(s)` 图片 URL，或传入 `data:image/...` base64 |
+### 分组健康状态怎么看？
+
+分组健康状态用于判断问题是个别请求异常，还是某个套餐、模型或上游分组集中异常。优先看 `success_rate`、`error_count` 和 `error_reasons`，再结合单条日志中的 `request_id` 定位具体请求。
+
+完整状态页、字段说明和排查流程请查看 [分组健康状态](/group-health)。
 
 ### 请求超时（Timeout）
 
@@ -153,14 +148,17 @@ export ANTHROPIC_MODEL=claude-sonnet-4-5-20250929
 
 建议：减小输入上下文，或稍后重试。
 
-### 触发频率限制（Rate Limit）
+### 触发频率或额度限制（Rate Limit）
 
-收到 `429` 状态码表示请求过于频繁。
+收到 `429` 状态码通常表示请求过于频繁，也可能表示上游账号日额度已用尽，或当前模型凭证正在冷却。
 
 ::: tip 应对方法
 - 降低请求频率，间隔几秒后重试
 - 避免在脚本中无间隔循环调用 API
 - 检查是否有其他进程在同时使用同一 Token
+- 如果日志包含 `Max 10/min` 或 `Max 5/min`，按提示把并发和每分钟请求数降到阈值以下
+- 如果日志包含 `daily limit exceeded`，等待每日额度重置，或切换其他可用模型/分组
+- 如果日志包含 `cooling down`，不要立即连续重试，等待冷却结束或临时切换模型
 :::
 
 ### 返回模型不可用（Model Not Available）

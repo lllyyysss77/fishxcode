@@ -13,3 +13,4 @@ deno/
 .deploy.env
 scripts/
 supabase/
+.playwright-mcp

@@ -127,22 +127,17 @@ Accedez a [Console -> Journaux d'utilisation](https://fishxcode.com/console/log)
 ::: tip Conseils de diagnostic
 - Copiez d'abord le `request_id` depuis la reponse API ou le journal, puis recherchez cette requete exacte
 - Utilisez le filtre de message d'erreur pour rechercher des mots-cles dans `content`, par exemple `Invalid token` ou `Upstream request failed`
-- Utilisez le code de statut pour regrouper rapidement les problemes, par exemple `401`, `429`, `502`, `503` ou `524`
+- Utilisez le code de statut pour regrouper rapidement les problemes, par exemple `400`, `401`, `403`, `413`, `429`, `500`, `502`, `503`, `504`
+- Si la meme erreur se concentre sur un groupe, verifiez s'il s'agit d'un probleme de configuration, d'utilisation ou de disponibilite amont
 :::
 
-Messages d'erreur frequents :
+Pour les champs complets, les categories de codes de statut et les messages frequents, consultez le [guide des journaux d'erreur](/fr/error-logs).
 
-| Contenu du journal | Signification | Action conseillee |
-|--------------------|---------------|-------------------|
-| `status_code=401, Invalid token` | Le token est invalide, mal copie ou expire | Recopiez le token depuis la console et supprimez les espaces en trop |
-| `status_code=429, Account RPM limit exceeded` | Le compte amont a atteint sa limite de requetes par minute | Reduisez la concurrence et la frequence des essais, puis reessayez plus tard |
-| `status_code=502, Upstream request failed` / `bad response status code 502` | Le service amont ou le reseau a renvoye une erreur | Reessayez plus tard ; si cela persiste, changez de modele ou contactez le support avec le `request_id` |
-| `status_code=502, The origin web server returned an invalid or incomplete response to Cloudflare` | L'origine amont a renvoye une reponse invalide via Cloudflare | Generalement temporaire cote amont ; reessayez plus tard |
-| `status_code=500, upstream error: do request failed` | L'envoi de la requete vers le service amont a echoue, souvent a cause du reseau ou d'une indisponibilite temporaire | Reessayez plus tard ; si cela persiste, transmettez le `request_id` au support |
-| `status_code=520, bad response status code 520` | Cloudflare a renvoye une erreur inconnue, souvent liee a une reponse amont anormale ou a une connexion interrompue | Reessayez plus tard ; si cela se repete, traitez-le comme un incident amont |
-| `status_code=524` / `bad response status code 524` | La reponse amont a depasse le delai Cloudflare de 120 secondes | Reduisez le contexte ou la longueur de sortie |
-| `status_code=503, model gpt-image-2 is only supported on /v1/images/generations and /v1/images/edits` | Un modele image a ete appele sur le mauvais endpoint | Envoyez les requetes image vers l'endpoint images correspondant |
-| `status_code=500, Image source is a local path that is not readable from this server` | La requete contient un chemin d'image local que l'upstream actuel ne peut pas lire, ce qui peut rendre la saisie dans le terminal inactive | Pour les projets frontend, verifiez d'abord les fichiers de dependances `lock` : supprimez les fichiers lock concernes, ou retirez les champs `png` anormaux qu'ils contiennent, puis rouvrez la session ; si vous devez toujours envoyer une image, utilisez une URL `http(s)` publique ou un payload base64 `data:image/...` |
+### Comment lire l'etat de sante des groupes ?
+
+L'etat de sante des groupes sert a savoir si le probleme touche une seule requete, ou s'il se concentre sur un forfait, un modele ou un groupe amont. Regardez d'abord `success_rate`, `error_count` et `error_reasons`, puis utilisez le `request_id` du journal unitaire pour diagnostiquer une requete precise.
+
+Pour la page d'etat complete, les champs et la procedure de diagnostic, consultez [l'etat de sante des groupes](/fr/group-health).
 
 ### Delai d'attente depasse (Timeout)
 
