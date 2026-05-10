@@ -1,16 +1,22 @@
 ---
 title: Etat de sante des groupes
-description: Etat de sante des groupes FishXCode, champs, categories d'erreurs et procedure de diagnostic.
+description: Etat de sante des groupes FishXCode, details des tokens d'equipe, colonnes d'export et procedure de diagnostic.
 ---
 
 # Etat de sante des groupes
 
-L'etat de sante des groupes sert a distinguer une erreur isolee d'un probleme concentre sur un forfait, un modele ou un groupe amont. Quand une API echoue, consultez d'abord l'etat de sante des groupes, puis ouvrez le journal d'utilisation de la requete pour retrouver le `request_id`.
+L'etat de sante des groupes sert a distinguer une erreur isolee d'un probleme concentre sur un forfait, un modele, un groupe amont ou un membre d'equipe. Les administrateurs entreprise et equipe peuvent l'utiliser pour repondre rapidement a trois questions :
+
+- Quel groupe a un taux de succes plus bas sur la periode choisie
+- Quel utilisateur ou token concentre le volume de requetes, le cout ou les erreurs
+- L'erreur est-elle limitee a un token ou touche-t-elle deja tout le groupe
+
+Quand une API echoue, consultez d'abord l'etat de sante des groupes, puis ouvrez le journal d'utilisation de la requete pour retrouver le `request_id`.
 
 ::: info Perimetre des donnees
 La page publique `status` integree ici interroge l'etat de sante des groupes utilises par tous les utilisateurs FishXCode sur la periode selectionnee. Elle reflete la disponibilite globale des groupes de la plateforme, avec un suivi en temps reel, impartial et stable.
 
-La vue **Journaux d'utilisation -> Etat de sante des groupes** dans la console ne compte que les requetes de l'utilisateur courant. Elle sert a diagnostiquer ses propres tokens, modeles et requetes.
+La vue **Journaux d'utilisation -> Etat de sante des groupes** dans la console affiche les donnees visibles selon les droits du compte courant. Un utilisateur personnel voit generalement ses propres tokens ; les administrateurs entreprise et equipe peuvent analyser l'utilisation par utilisateur, nom d'utilisateur, token et groupe.
 :::
 
 <iframe
@@ -27,7 +33,7 @@ Entree console : [Console -> Journaux d'utilisation](https://fishxcode.com/conso
 
 ## Exemple console
 
-Voici une capture d'exemple de **Journaux d'utilisation -> Etat de sante des groupes**, pour la periode du 6 avril 2026 au 1er mai 2026. Elle montre le taux de succes, le nombre de requetes, le temps moyen, la derniere requete et les causes d'echec du groupe global.
+Voici une capture d'exemple de **Journaux d'utilisation -> Etat de sante des groupes**. Elle montre le taux de succes, le nombre de requetes, le cout, les donnees de cache, le temps moyen, la derniere requete et les causes d'echec.
 
 ![Exemple d'etat de sante des groupes dans la console](/img/group-health.png)
 
@@ -37,33 +43,72 @@ Evaluez d'abord l'impact, puis traitez l'erreur unitaire. Un journal unitaire se
 
 Pour expliquer un message d'erreur unitaire, consultez le [guide des journaux d'erreur](/fr/error-logs).
 
-## Champs
+## Colonnes de la liste
 
-| Champ | Signification | Valeur pour le diagnostic |
-|-------|---------------|---------------------------|
-| `group` | Groupe de la requete, par exemple forfait, groupe par defaut ou groupe de modele | Voir si le probleme se concentre sur un forfait, un modele ou un pool amont |
-| `total_count` | Nombre total de requetes dans la periode | Evaluer si l'echantillon est suffisant |
-| `success_count` | Nombre de requetes reussies | Comparer avec `total_count` pour mesurer la disponibilite |
-| `error_count` | Nombre de requetes echouees | Si le nombre monte, regarder d'abord `error_reasons` |
-| `success_rate` | Taux de succes | Un taux nettement bas indique souvent un probleme concentre |
-| `avg_use_time` | Temps moyen, en secondes | Si le temps monte, verifier longs contextes, longues sorties, outils et lenteur amont |
-| `quota` | Quota du groupe ou valeur de quota statistique | Croiser avec le forfait et le solde console |
-| `tokens` | Consommation de tokens dans la periode | Detecter une consommation anormale ou des requetes a gros contexte |
-| `first_seen_at` | Premiere apparition dans la periode statistique | Situer le debut du probleme |
-| `last_seen_at` | Derniere apparition dans la periode statistique | Voir si le probleme continue |
-| `error_reasons` | Causes d'erreur frequentes et nombre d'occurrences | Traiter d'abord l'erreur la plus frequente, pas seulement la derniere ligne |
+La liste de la console et l'export CSV utilisent les memes colonnes d'affichage. La liste contient deux types de lignes :
+
+- **Ligne groupe** : resume l'etat global d'un groupe sur la periode choisie.
+- **Ligne token** : affiche les details utilisateur et token sous un groupe, pour aider les administrateurs entreprise et equipe a localiser un membre, un projet ou un service.
+
+| Colonne affichee | Lignes concernees | Description | Utilisation |
+|------------------|-------------------|-------------|-------------|
+| Type | Ligne groupe, ligne token | Indique si la ligne est un resume `Groupe` ou un detail `Token` | Voir d'abord les lignes groupe, puis les lignes token pour localiser le membre ou token |
+| Groupe | Ligne groupe, ligne token | Groupe de la requete, par exemple forfait, groupe par defaut ou groupe de modele | Voir si le probleme se concentre sur un forfait, un modele ou un pool amont |
+| ID utilisateur | Ligne token | ID de l'utilisateur qui a utilise le token | Localiser le compte membre lors d'un diagnostic entreprise |
+| Nom d'utilisateur | Ligne token | Nom d'utilisateur qui a utilise le token | Rapports d'equipe, communication avec le membre et controle des droits |
+| Token | Ligne token | Nom du token configure dans la console | Verifier si l'anomalie est limitee a un token |
+| Taux de succes | Ligne groupe, ligne token | Pourcentage de requetes reussies | Si le taux est nettement plus bas que les lignes voisines, verifier ce groupe ou token en priorite |
+| Requetes | Ligne groupe, ligne token | Nombre total de requetes sur la periode choisie | Ne pas sur-interpreter le taux de succes si l'echantillon est faible |
+| Succes | Ligne groupe, ligne token | Nombre de requetes reussies | Le lire avec Requetes et Erreurs pour evaluer la disponibilite |
+| Erreurs | Ligne groupe, ligne token | Nombre de requetes echouees | Si le nombre monte, verifier d'abord Cause d'echec et les journaux d'erreur |
+| Cout | Ligne groupe, ligne token | Cout facture sur la periode, exporte au format monetaire de la console | Comptabilite d'equipe, repartition par projet et detection de cout anormal |
+| Taux de cache | Ligne groupe, ligne token | Part des tokens qui ont touche le cache | Si le taux est bas, verifier si le contexte change trop souvent ou ne se reutilise pas |
+| Tokens en cache | Ligne groupe, ligne token | Nombre de tokens qui ont touche le cache | Estimer l'echelle reelle de l'economie de cache |
+| Requetes en cache | Ligne groupe, ligne token | Nombre de requetes ayant touche le cache | Mesurer combien de requetes ont vraiment utilise le cache |
+| Part requetes cache | Ligne groupe, ligne token | Requetes en cache divisees par le total des requetes | Mesurer la couverture du cache, pas seulement le volume de tokens |
+| Tokens cache moyens | Ligne groupe, ligne token | Nombre moyen de tokens en cache par requete | Comparer l'efficacite de reutilisation entre membres, services ou groupes |
+| Temps moyen | Ligne groupe, ligne token | Temps moyen de requete, en secondes | Si le temps monte, verifier longs contextes, longues sorties, chaines d'outils et lenteur amont |
+| Heure de debut | Ligne groupe, ligne token | Premiere requete dans la fenetre statistique | Situer le debut du probleme ou du trafic |
+| Derniere requete | Ligne groupe, ligne token | Derniere requete dans la fenetre statistique | Voir si le probleme ou le trafic continue |
+| Cause d'echec | Ligne groupe | Causes d'echec frequentes et nombre d'occurrences ; vide ou `-` sans erreur | Traiter d'abord l'erreur la plus frequente, pas seulement la derniere ligne |
+
+::: info Source des champs
+Les colonnes affichees sont generees a partir de statistiques agregees. Pour l'usage quotidien, prenez la liste console et l'export CSV comme reference ; ne faites le lien avec les noms de champs bruts que pour une integration API ou un diagnostic technique.
+:::
+
+::: tip Diagnostic d'equipe
+Regardez d'abord les lignes groupe pour savoir s'il s'agit d'un probleme de pool de ressources, puis les lignes token pour voir si un utilisateur ou un token en est la cause. Si le taux de succes du groupe est normal mais qu'un token a beaucoup d'erreurs, verifiez d'abord le token, le nom du modele, la configuration cliente ou le corps de requete de ce membre.
+:::
+
+## Export CSV
+
+L'export CSV reprend les memes colonnes que la liste courante. Il convient aux rapports hebdomadaires, a la repartition des couts, aux revues d'incident et au rapprochement d'usage des membres.
+
+Apres export, vous pouvez previsualiser le fichier avec le [visualiseur CSV en ligne](https://tools.beer/zh/csv/viewer/). Il prend en charge le glisser-deposer ou la selection d'un fichier CSV, ainsi que le collage de texte CSV, pratique pour verifier rapidement les colonnes et les causes d'echec.
+
+| Comportement export | Description |
+|---------------------|-------------|
+| Ligne groupe | `Type` vaut `Groupe` ; ID utilisateur, nom d'utilisateur et token sont generalement vides, ce qui represente le resume du groupe |
+| Ligne token | `Type` vaut `Token` ; ID utilisateur, nom d'utilisateur et token sont affiches, ce qui represente le detail membre ou token sous le groupe |
+| Format monetaire | `Cout` utilise le format monetaire de la console, par exemple `¥905.48` |
+| Format pourcentage | Taux de succes, taux de cache et part requetes cache sont exportes en pourcentage |
+| Format numerique | Les grands nombres peuvent contenir des separateurs de milliers, utiles pour lecture directe ou import tableur |
+| Format temporel | Heure de debut et Derniere requete sont exportees en heure locale pour les aligner avec l'incident |
+| Cause d'echec | Plusieurs erreurs frequentes sont fusionnees avec leur nombre d'occurrences ; vide ou `-` sans erreur |
 
 ## Procedure de diagnostic
 
-### 1. Regarder le taux de succes et le nombre d'erreurs
+### 1. Evaluer l'impact
 
-Si `success_rate` reste proche du niveau habituel et que `error_count` est faible, il s'agit souvent d'une erreur occasionnelle. Copiez le `request_id` de la requete et poursuivez dans le journal unitaire.
+Regardez d'abord les lignes ou `Type=Groupe`. Si le Taux de succes reste proche du niveau habituel et que les Erreurs sont faibles, il s'agit souvent d'une erreur occasionnelle. Copiez le `request_id` de la requete et poursuivez dans le journal unitaire.
 
-Si le `success_rate` d'un groupe est clairement plus bas que les autres, ou si `error_count` augmente fortement, depannez d'abord par groupe : modele, token, compte amont, droits du forfait et ressources de plateforme.
+Si le Taux de succes d'un groupe est clairement plus bas que les autres, ou si les Erreurs augmentent fortement, depannez d'abord par groupe : modele, token, compte amont, droits du forfait et ressources de plateforme.
 
-### 2. Lire les principales causes d'erreur
+En contexte entreprise ou equipe, regardez ensuite les lignes `Type=Token` de ce groupe. Si un seul utilisateur ou token est anormal, verifiez d'abord sa configuration cliente, son token, son nom de modele, son corps de requete et sa strategie de concurrence.
 
-`error_reasons` est generalement affiche par nombre d'occurrences. Traitez d'abord les erreurs les plus frequentes, puis les erreurs rares. Les erreurs frequentes representent le type d'incident dominant dans la periode.
+### 2. Lire les principales causes d'echec
+
+Cause d'echec est generalement affichee par nombre d'occurrences. Traitez d'abord les erreurs les plus frequentes, puis les erreurs rares. Les erreurs frequentes representent le type d'incident dominant dans la periode.
 
 | Type d'erreur | Mots-cles frequents | Attribution initiale | Verification prioritaire |
 |---------------|---------------------|----------------------|--------------------------|
@@ -89,6 +134,15 @@ Si le `success_rate` d'un groupe est clairement plus bas que les autres, ou si `
 | Plusieurs groupes montrent `502`, `504`, `521`, `522`, `524` | Probleme amont ou de reseau | Reessayer plus tard, reduire les longues taches ; contacter le support si cela persiste |
 | Plusieurs requetes montrent `413` | Corps de requete trop grand | Reduire le contexte, diviser les fichiers, compresser les images ou reduire les resultats d'outils |
 | Plusieurs requetes montrent `429` | Frequence trop elevee, quota journalier epuise ou credentials en refroidissement | Reduire la concurrence ; distinguer RPM, daily limit et cooling down dans les logs |
+
+### 4. Croiser cout et cache
+
+| Symptome | Cause plus probable | Action conseillee |
+|----------|---------------------|-------------------|
+| Cout nettement plus haut que les autres tokens du meme groupe | Grand contexte, longue sortie, appels frequents ou taches repetees | Croiser Requetes, Temps moyen et journaux d'erreur pour localiser le service ou membre |
+| Taux de cache eleve mais Part requetes cache faible | Peu de grosses requetes touchent le cache | Verifier si seules des taches fixes reutilisent le contexte |
+| Part requetes cache elevee mais Tokens cache moyens faibles | Beaucoup de requetes touchent le cache, mais le gain unitaire est faible | Verifier si le contexte est trop court ou si le contenu cache est instable |
+| Un token a un Temps moyen nettement plus haut | Taches client lourdes, long contexte, longue sortie ou amont lent | Comparer Requetes, cache, Cause d'echec et journaux unitaires de ce token |
 
 ## Informations utiles au support
 

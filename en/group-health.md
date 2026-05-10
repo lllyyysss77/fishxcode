@@ -1,16 +1,22 @@
 ---
 title: Group Health
-description: FishXCode group health status, field descriptions, error categories, and troubleshooting flow.
+description: FishXCode group health status, team token details, export columns, and troubleshooting flow.
 ---
 
 # Group Health
 
-Group health helps determine whether an API issue is an isolated request failure or a concentrated issue in a plan, model, or upstream group. When troubleshooting API errors, check group health first, then open the single usage log entry to locate the specific `request_id`.
+Group health helps determine whether an API issue is an isolated request failure or a concentrated issue in a plan, model, upstream group, or team member. Enterprise and team admins can use it to answer three questions quickly:
+
+- Which group has a lower success rate in the selected time range
+- Which user or token contributes most of the request volume, cost, or errors
+- Whether the error is isolated to one token or already affects the whole group
+
+When troubleshooting API errors, check group health first, then open the single usage log entry to locate the specific `request_id`.
 
 ::: info Data scope
 The public `status` page embedded here queries group health across all FishXCode users during the selected time window. It reflects platform-wide group availability and is real-time, impartial, and stable.
 
-The **Usage Logs -> Group Health** view inside the console only counts the current user's own requests. Use it to troubleshoot personal tokens, models, and request issues.
+The **Usage Logs -> Group Health** view inside the console counts data visible under the current account permissions. Personal users usually see only their own tokens; enterprise and team admins can review team usage by user, username, token, and group.
 :::
 
 <iframe
@@ -27,7 +33,7 @@ Console entry: [Console -> Usage Logs](https://fishxcode.com/console/log). In er
 
 ## Console Example
 
-The screenshot below shows **Usage Logs -> Group Health** in the console. The time range is April 6, 2026 to May 1, 2026, showing the global group's success rate, request count, average latency, most recent request time, and failure reasons.
+The screenshot below shows **Usage Logs -> Group Health** in the console, including group success rate, request count, cost, cache hit data, average latency, latest request time, and failure reasons.
 
 ![Console group health example](/img/group-health.png)
 
@@ -37,33 +43,72 @@ Identify the impact scope first, then handle the single error. A single log entr
 
 For single error message explanations, see [Error Logs](/en/error-logs).
 
-## Fields
+## List Columns
 
-| Field | Meaning | Troubleshooting value |
-|-------|---------|-----------------------|
-| `group` | Request group, such as a plan group, default group, or specific model group | Check whether the issue is concentrated in one plan, model, or upstream resource pool |
-| `total_count` | Total request count in the current time range | Check whether the sample size is large enough and avoid being misled by a few requests |
-| `success_count` | Successful request count | Compare with `total_count` to understand overall availability |
-| `error_count` | Failed request count | When errors keep rising, check `error_reasons` first |
-| `success_rate` | Success rate | A clearly low success rate usually means the group has a concentrated issue |
-| `avg_use_time` | Average latency in seconds | When latency rises, focus on long context, long output, tool chains, and slow upstream responses |
-| `quota` | Group quota or quota statistics value | Combine with plan and console balance to check whether quota limits are close |
-| `tokens` | Token consumption in the current time range | Check for abnormal consumption or large-context requests |
-| `first_seen_at` | First seen time in the statistics window | Locate when the issue started |
-| `last_seen_at` | Last seen time in the statistics window | Check whether the issue is still ongoing |
-| `error_reasons` | High-frequency error reasons and counts | Handle the most frequent error first; do not rely only on the latest log entry |
+The console list and CSV export use the same display columns. The list contains two row types:
+
+- **Group row**: summarizes the overall health of one group in the selected time range.
+- **Token row**: shows user and token details under a group, which helps enterprise and team admins locate members, projects, or services.
+
+| Display column | Applies to | Description | How to use it |
+|----------------|------------|-------------|---------------|
+| Type | Group row, token row | Identifies whether the row is a `Group` summary or a `Token` detail | Check group rows first for overall status, then token rows for a member or token |
+| Group | Group row, token row | Request group, such as a plan group, default group, or model-specific group | Check whether the issue is concentrated in one plan, model, or upstream resource pool |
+| User ID | Token row | User ID that used the token | Use it to locate the member account in enterprise troubleshooting |
+| Username | Token row | Username that used the token | Use it for team reports, member communication, and permission checks |
+| Token | Token row | Token name configured in the console | Check whether the issue is isolated to one token |
+| Success Rate | Group row, token row | Percentage of successful requests | If it is clearly lower than peer rows, check that group or token first |
+| Requests | Group row, token row | Total request count in the selected time range | Avoid over-reading success rate when the sample size is small |
+| Success | Group row, token row | Successful request count | Read it together with Requests and Errors to judge availability |
+| Errors | Group row, token row | Failed request count | When errors rise, check Failure Reason and error logs first |
+| Cost | Group row, token row | Billing cost in the selected time range, exported in console currency format | Use it for team cost accounting, project allocation, and abnormal cost detection |
+| Cache Hit Rate | Group row, token row | Percentage of tokens that hit cache | If low, check whether context changes too often or cannot be reused |
+| Cache Tokens | Group row, token row | Number of tokens that hit cache | Use it to estimate the actual cache saving scale |
+| Cache Requests | Group row, token row | Number of requests that hit cache | Shows how many requests actually used cache |
+| Cache Request Share | Group row, token row | Cache request count divided by total request count | Shows cache coverage, not only cache token volume |
+| Avg Cache Tokens | Group row, token row | Average cache tokens hit per request | Compare cache reuse efficiency across members, services, or groups |
+| Avg Latency | Group row, token row | Average request latency in seconds | When latency rises, check long context, long output, tool chains, and slow upstream responses |
+| Start Time | Group row, token row | First request time in the current statistics window | Locate when the issue or traffic started |
+| Latest Request | Group row, token row | Last request time in the current statistics window | Check whether the issue or traffic is still ongoing |
+| Failure Reason | Group row | High-frequency failure reasons and counts; empty or `-` when there are no errors | Handle the most frequent error first; do not rely only on the latest log entry |
+
+::: info Field source
+The display columns are generated from backend statistics. For day-to-day use, follow the console list and CSV export columns; only map them to raw field names when integrating an API or doing technical troubleshooting.
+:::
+
+::: tip Team diagnosis
+Check group rows first to decide whether it is a resource-pool issue, then check token rows to see whether a user or token caused it. If the group success rate is normal but one token has a high error rate, check that member's token, model name, client configuration, or request body first.
+:::
+
+## CSV Export
+
+CSV export uses the same columns as the current list. It is suitable for enterprise and team weekly reports, cost allocation, incident reviews, and member usage reconciliation.
+
+After exporting, you can preview the file with the [online CSV viewer](https://tools.beer/zh/csv/viewer/). It supports dragging or selecting a CSV file, and it can also parse pasted CSV text, which is useful for quickly checking columns and failure reasons.
+
+| Export behavior | Description |
+|-----------------|-------------|
+| Group row | `Type` is `Group`; User ID, Username, and Token are usually empty, representing the group summary |
+| Token row | `Type` is `Token`; User ID, Username, and Token are shown, representing member or token details under the group |
+| Currency format | `Cost` uses the console currency format, such as `¥905.48` |
+| Percentage format | Success Rate, Cache Hit Rate, and Cache Request Share are exported as percentages |
+| Number format | Large numbers may include thousands separators for direct reading or spreadsheet import |
+| Time format | Start Time and Latest Request are exported as local time, making them easier to align with incident time |
+| Failure Reason | Multiple high-frequency errors are merged and include occurrence counts at the end; empty or `-` when there are no errors |
 
 ## Troubleshooting Flow
 
-### 1. Check success rate and error count first
+### 1. Determine the impact scope
 
-If `success_rate` is close to normal and `error_count` is low, it is usually a transient error. Copy the `request_id` from the single request and continue troubleshooting.
+Check rows where `Type=Group` first. If Success Rate is close to normal and Errors is low, it is usually a transient error. Copy the `request_id` from the single request and continue troubleshooting.
 
-If one group's `success_rate` is clearly lower than other groups, or `error_count` is concentrated, prioritize group-level checks for model, token, upstream account, plan permissions, and platform resource status.
+If one group's Success Rate is clearly lower than other groups, or Errors is concentrated, prioritize group-level checks for model, token, upstream account, plan permissions, and platform resource status.
 
-### 2. Check top error reasons
+In enterprise or team scenarios, check the `Type=Token` rows under that group. If only one user or token is abnormal, check that member's client configuration, token, model name, request body, and concurrency strategy first.
 
-`error_reasons` is usually sorted by occurrence count. Start with the most frequent error, then inspect lower-frequency errors. High-frequency errors show the main failure type in the current time range.
+### 2. Check top failure reasons
+
+Failure Reason is usually sorted by occurrence count. Start with the most frequent error, then inspect lower-frequency errors. High-frequency errors show the main failure type in the current time range.
 
 | Error type | Common log keywords | Initial attribution | What to check first |
 |------------|---------------------|---------------------|---------------------|
@@ -89,6 +134,15 @@ If one group's `success_rate` is clearly lower than other groups, or `error_coun
 | Multiple groups show `502`, `504`, `521`, `522`, or `524` at the same time | Upstream or network path issue | Retry later and reduce long-running tasks; contact support if it persists |
 | Multiple requests show `413` | Request body is too large | Shorten context, split files, compress images, or reduce tool results |
 | Multiple requests show `429` | Request rate is too high, daily quota is exhausted, or credentials are cooling down | Reduce concurrency; distinguish RPM, daily limit, and cooldown from the log |
+
+### 4. Combine cost and cache data
+
+| Symptom | More likely cause | What to do |
+|---------|-------------------|------------|
+| Cost is clearly higher than other tokens in the same group | Large context, long output, high-frequency calls, or repeated tasks | Combine Requests, Avg Latency, and error logs to locate the service or member |
+| Cache Hit Rate is high but Cache Request Share is low | A small number of large requests hit cache | Check whether only fixed tasks are reusing context |
+| Cache Request Share is high but Avg Cache Tokens is low | Many requests hit cache, but each hit saves little | Check whether context is too short or cache content is unstable |
+| One token has clearly higher Avg Latency | Heavy client tasks, long context, long output, or slow upstream | Compare that token's Requests, cache data, Failure Reason, and single logs |
 
 ## Information for Support
 

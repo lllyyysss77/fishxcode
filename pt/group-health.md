@@ -1,16 +1,22 @@
 ---
 title: Status de saude dos grupos
-description: Status de saude dos grupos FishXCode, campos, classificacao de erros e fluxo de diagnostico.
+description: Status de saude dos grupos FishXCode, detalhes de tokens de equipe, colunas de exportacao e fluxo de diagnostico.
 ---
 
 # Status de saude dos grupos
 
-O status de saude dos grupos ajuda a saber se uma falha de chamada e um problema isolado de requisicao ou um problema concentrado em um plano, modelo ou grupo upstream. Ao diagnosticar falhas de API, veja primeiro o status do grupo e depois use os logs de uso para localizar o `request_id` especifico.
+O status de saude dos grupos ajuda a saber se uma falha de chamada e um problema isolado de requisicao ou um problema concentrado em um plano, modelo, grupo upstream ou membro da equipe. Administradores de empresa e equipe podem usa-lo para responder rapidamente a tres perguntas:
+
+- Qual grupo teve queda na taxa de sucesso no periodo selecionado
+- Qual usuario ou token concentrou mais requisicoes, consumo ou erros
+- Se o erro esta concentrado em um unico Token ou ja afeta todo o grupo
+
+Ao diagnosticar falhas de API, veja primeiro o status do grupo e depois use os logs de uso para localizar o `request_id` especifico.
 
 ::: info Escopo dos dados
 A pagina publica `status` incorporada aqui consulta o status de saude dos grupos usados por todos os usuarios FishXCode durante o periodo selecionado. Ela reflete a disponibilidade global dos grupos da plataforma e e em tempo real, imparcial e estavel.
 
-A visao **Logs de uso -> Status de saude dos grupos** dentro do console conta apenas as requisicoes do usuario atual. Use-a para diagnosticar seus proprios tokens, modelos e requisicoes.
+A visao **Logs de uso -> Status de saude dos grupos** dentro do console mostra os dados visiveis conforme as permissoes da conta atual. Usuarios pessoais normalmente veem apenas seus proprios tokens; administradores de empresa e equipe podem analisar uso por usuario, nome de usuario, token e grupo.
 :::
 
 <iframe
@@ -27,7 +33,7 @@ Entrada no console: [Console -> Logs de uso](https://fishxcode.com/console/log).
 
 ## Exemplo no console
 
-A imagem abaixo e um exemplo de **Logs de uso -> Status de saude dos grupos** no console. O periodo e de 6 de abril de 2026 a 1 de maio de 2026, mostrando taxa de sucesso, numero de requisicoes, tempo medio, horario da requisicao mais recente e motivos de falha para grupos globais.
+A imagem abaixo e um exemplo de **Logs de uso -> Status de saude dos grupos** no console. Ela mostra taxa de sucesso, numero de requisicoes, consumo, cache, tempo medio, requisicao mais recente e motivos de falha.
 
 ![Exemplo de status de saude dos grupos no console](/img/group-health.png)
 
@@ -37,33 +43,72 @@ Primeiro determine o alcance do impacto, depois trate o erro individual. Logs in
 
 Para interpretar uma mensagem de erro individual, veja [Explicacao dos logs de erro](/pt/error-logs).
 
-## Campos
+## Colunas da lista
 
-| Campo | Significado | Valor para diagnostico |
-|-------|-------------|------------------------|
-| `group` | Grupo da requisicao, como grupo de plano, grupo padrao ou grupo de modelo especifico | Saber se o problema esta concentrado em um plano, modelo ou pool upstream |
-| `total_count` | Total de requisicoes no periodo atual | Saber se a amostra e suficiente e evitar conclusao por poucas requisicoes |
-| `success_count` | Numero de requisicoes bem-sucedidas | Comparar com `total_count` para avaliar disponibilidade geral |
-| `error_count` | Numero de requisicoes com falha | Quando cresce continuamente, ver primeiro `error_reasons` |
-| `success_rate` | Taxa de sucesso | Se estiver claramente baixa, normalmente indica problema concentrado no grupo |
-| `avg_use_time` | Tempo medio, em segundos | Se subir, investigar contexto longo, saida longa, cadeia de ferramentas e lentidao upstream |
-| `quota` | Cota do grupo ou valor estatistico de cota | Combinar com plano e saldo no console para saber se esta perto do limite |
-| `tokens` | Consumo de Token no periodo atual | Identificar consumo anormal ou requisicoes com contexto grande |
-| `first_seen_at` | Primeiro horario visto no periodo estatistico | Localizar o inicio do problema |
-| `last_seen_at` | Ultimo horario visto no periodo estatistico | Saber se o problema ainda continua |
-| `error_reasons` | Motivos de erro frequentes e contagens | Priorizar o erro com mais ocorrencias, nao apenas o ultimo log |
+A lista do console e a exportacao CSV usam as mesmas colunas exibidas. A lista contem dois tipos de linha:
+
+- **Linha de grupo**: resume a saude geral de um grupo no periodo selecionado.
+- **Linha de token**: mostra detalhes de usuario e token dentro de um grupo, ajudando administradores de empresa e equipe a localizar membros, projetos ou servicos.
+
+| Coluna exibida | Aplica-se a | Descricao | Como usar |
+|----------------|-------------|-----------|-----------|
+| Tipo | Linha de grupo, linha de token | Indica se a linha e resumo `Grupo` ou detalhe `Token` | Veja primeiro as linhas de grupo, depois as linhas de token para localizar membro ou Token |
+| Grupo | Linha de grupo, linha de token | Grupo da requisicao, como grupo de plano, grupo padrao ou grupo de modelo | Saber se o problema esta concentrado em um plano, modelo ou pool upstream |
+| ID do usuario | Linha de token | ID do usuario que usou o token | Localizar a conta do membro em diagnosticos empresariais |
+| Nome de usuario | Linha de token | Nome do usuario que usou o token | Relatorios de equipe, contato com membro e verificacao de permissoes |
+| Token | Linha de token | Nome do Token configurado no console | Saber se a anomalia esta isolada a um Token |
+| Taxa de sucesso | Linha de grupo, linha de token | Percentual de requisicoes bem-sucedidas | Se estiver claramente menor que linhas semelhantes, investigue primeiro esse grupo ou token |
+| Requisicoes | Linha de grupo, linha de token | Total de requisicoes no periodo selecionado | Evite interpretar demais a taxa de sucesso quando a amostra for pequena |
+| Sucesso | Linha de grupo, linha de token | Numero de requisicoes bem-sucedidas | Leia junto com Requisicoes e Erros para avaliar disponibilidade |
+| Erros | Linha de grupo, linha de token | Numero de requisicoes com falha | Se subir, veja primeiro Motivo da falha e logs de erro |
+| Consumo | Linha de grupo, linha de token | Consumo faturado no periodo, exportado no formato monetario do console | Contabilidade da equipe, rateio por projeto e deteccao de consumo anormal |
+| Taxa de cache | Linha de grupo, linha de token | Percentual de tokens que atingiram cache | Se estiver baixa, veja se o contexto muda muito ou nao pode ser reutilizado |
+| Tokens em cache | Linha de grupo, linha de token | Numero de tokens que atingiram cache | Estimar a escala real da economia de cache |
+| Requisicoes em cache | Linha de grupo, linha de token | Numero de requisicoes que atingiram cache | Mede quantas requisicoes realmente usaram cache |
+| Proporcao de requisicoes em cache | Linha de grupo, linha de token | Requisicoes em cache divididas pelo total de requisicoes | Mede cobertura de cache, nao apenas volume de tokens |
+| Media de tokens em cache | Linha de grupo, linha de token | Media de tokens em cache por requisicao | Comparar eficiencia de reutilizacao entre membros, servicos ou grupos |
+| Tempo medio | Linha de grupo, linha de token | Tempo medio de requisicao, em segundos | Se subir, investigar contexto longo, saida longa, cadeia de ferramentas e lentidao upstream |
+| Hora de inicio | Linha de grupo, linha de token | Primeira requisicao dentro da janela estatistica | Localizar inicio do problema ou do trafego |
+| Ultima requisicao | Linha de grupo, linha de token | Ultima requisicao dentro da janela estatistica | Saber se o problema ou trafego continua |
+| Motivo da falha | Linha de grupo | Motivos de falha frequentes e contagens; vazio ou `-` quando nao ha erros | Priorizar o erro com mais ocorrencias, nao apenas o ultimo log |
+
+::: info Fonte dos campos
+As colunas exibidas sao geradas a partir de estatisticas agregadas. Para uso diario, siga a lista do console e as colunas do CSV; faca o mapeamento para campos brutos apenas em integracoes de API ou diagnostico tecnico.
+:::
+
+::: tip Diagnostico de equipe
+Veja primeiro as linhas de grupo para decidir se e problema do pool de recursos, depois as linhas de token para saber se um usuario ou token causou o problema. Se a taxa de sucesso do grupo estiver normal mas um token tiver muitos erros, verifique primeiro o Token, nome do modelo, configuracao do cliente ou corpo da requisicao desse membro.
+:::
+
+## Exportacao CSV
+
+A exportacao CSV usa as mesmas colunas da lista atual. Ela e adequada para relatorios semanais, rateio de custos, revisoes de incidentes e conciliacao de uso por membro.
+
+Depois de exportar, voce pode previsualizar o arquivo com o [visualizador CSV online](https://tools.beer/zh/csv/viewer/). Ele permite arrastar ou selecionar um arquivo CSV, e tambem colar texto CSV, util para verificar rapidamente colunas e motivos de falha.
+
+| Comportamento da exportacao | Descricao |
+|-----------------------------|-----------|
+| Linha de grupo | `Tipo` e `Grupo`; ID do usuario, nome de usuario e Token normalmente ficam vazios, representando o resumo do grupo |
+| Linha de token | `Tipo` e `Token`; mostra ID do usuario, nome de usuario e Token, representando detalhe de membro ou Token dentro do grupo |
+| Formato monetario | `Consumo` usa o formato monetario do console, por exemplo `¥905.48` |
+| Formato percentual | Taxa de sucesso, taxa de cache e proporcao de requisicoes em cache saem como percentuais |
+| Formato numerico | Numeros grandes podem incluir separadores de milhares, uteis para leitura direta ou importacao em planilhas |
+| Formato de tempo | Hora de inicio e Ultima requisicao saem como horario local para alinhar com o incidente |
+| Motivo da falha | Varios erros frequentes sao combinados com contagem no final; vazio ou `-` quando nao ha erros |
 
 ## Fluxo de diagnostico
 
-### 1. Veja primeiro taxa de sucesso e numero de erros
+### 1. Determine o alcance do impacto
 
-Se `success_rate` esta perto do normal e `error_count` e baixo, geralmente e uma falha ocasional; copie o `request_id` da requisicao individual para continuar.
+Veja primeiro as linhas em que `Tipo=Grupo`. Se a Taxa de sucesso esta perto do normal e Erros e baixo, geralmente e uma falha ocasional; copie o `request_id` da requisicao individual para continuar.
 
-Se `success_rate` de um grupo esta claramente abaixo dos outros, ou `error_count` esta concentrado, investigue primeiro modelo, Token, conta upstream, permissao do plano e recursos da plataforma por grupo.
+Se a Taxa de sucesso de um grupo esta claramente abaixo dos outros, ou Erros esta concentrado, investigue primeiro modelo, Token, conta upstream, permissao do plano e recursos da plataforma por grupo.
 
-### 2. Depois veja os principais motivos de erro
+Em cenarios de empresa ou equipe, veja depois as linhas `Tipo=Token` dentro desse grupo. Se apenas um usuario ou token estiver anormal, verifique primeiro configuracao do cliente, Token, nome do modelo, corpo da requisicao e estrategia de concorrencia desse membro.
 
-`error_reasons` normalmente aparece ordenado por ocorrencias. Trate primeiro o erro mais frequente e depois os de baixa frequencia. Erros frequentes representam o principal tipo de falha no periodo atual.
+### 2. Veja os principais motivos de falha
+
+Motivo da falha normalmente aparece ordenado por ocorrencias. Trate primeiro o erro mais frequente e depois os de baixa frequencia. Erros frequentes representam o principal tipo de falha no periodo atual.
 
 | Tipo de erro | Palavras-chave comuns | Atribuicao inicial | Julgamento prioritario |
 |--------------|-----------------------|--------------------|------------------------|
@@ -89,6 +134,15 @@ Se `success_rate` de um grupo esta claramente abaixo dos outros, ou `error_count
 | Varios grupos mostram `502`, `504`, `521`, `522`, `524` | Upstream ou rede intermediaria anormal | Tentar mais tarde e reduzir tarefas longas; se persistir, contatar suporte |
 | Varias requisicoes mostram `413` | Corpo grande demais | Reduzir contexto, dividir arquivos, comprimir imagens ou reduzir resultados de ferramentas |
 | Varias requisicoes mostram `429` | Frequencia alta demais, cota diaria esgotada ou credenciais em cooldown | Reduzir concorrencia; diferenciar RPM, daily limit e cooling down pelo log |
+
+### 4. Combine consumo e cache
+
+| Sintoma | Causa mais provavel | Acao sugerida |
+|---------|---------------------|---------------|
+| Consumo claramente maior que outros tokens do mesmo grupo | Contexto grande, saida longa, chamadas frequentes ou tarefas repetidas | Combinar Requisicoes, Tempo medio e logs de erro para localizar servico ou membro |
+| Taxa de cache alta mas Proporcao de requisicoes em cache baixa | Poucas requisicoes grandes atingem cache | Verificar se apenas tarefas fixas reutilizam contexto |
+| Proporcao de requisicoes em cache alta mas Media de tokens em cache baixa | Muitas requisicoes atingem cache, mas cada uma economiza pouco | Verificar se o contexto e curto demais ou se o conteudo cache e instavel |
+| Um token tem Tempo medio claramente alto | Tarefas pesadas no cliente, contexto longo, saida longa ou upstream lento | Comparar Requisicoes, cache, Motivo da falha e logs individuais desse token |
 
 ## Informacoes para suporte
 
