@@ -53,24 +53,24 @@ A lista do console e a exportacao CSV usam as mesmas colunas exibidas. A lista c
 | Coluna exibida | Aplica-se a | Descricao | Como usar |
 |----------------|-------------|-----------|-----------|
 | Tipo | Linha de grupo, linha de token | Indica se a linha e resumo `Grupo` ou detalhe `Token` | Veja primeiro as linhas de grupo, depois as linhas de token para localizar membro ou Token |
-| Grupo | Linha de grupo, linha de token | Grupo da requisicao, como grupo de plano, grupo padrao ou grupo de modelo | Saber se o problema esta concentrado em um plano, modelo ou pool upstream |
+| Grupo | Linha de grupo, linha de token | Grupos que apareceram no periodo selecionado, incluindo grupos por uso, grupos de plano, grupo padrao ou grupo de modelo | Saber se o problema esta concentrado em um plano, modelo ou pool upstream |
 | ID do usuario | Linha de token | ID do usuario que usou o token | Localizar a conta do membro em diagnosticos empresariais |
 | Nome de usuario | Linha de token | Nome do usuario que usou o token | Relatorios de equipe, contato com membro e verificacao de permissoes |
 | Token | Linha de token | Nome do Token configurado no console | Saber se a anomalia esta isolada a um Token |
-| Taxa de sucesso | Linha de grupo, linha de token | Percentual de requisicoes bem-sucedidas | Se estiver claramente menor que linhas semelhantes, investigue primeiro esse grupo ou token |
+| Taxa de sucesso | Linha de grupo, linha de token | Taxa de sucesso = requisicoes bem-sucedidas / total de requisicoes | Abaixo de 80% merece atencao; se estiver claramente menor que linhas semelhantes, investigue primeiro esse grupo ou token |
 | Requisicoes | Linha de grupo, linha de token | Total de requisicoes no periodo selecionado | Evite interpretar demais a taxa de sucesso quando a amostra for pequena |
-| Sucesso | Linha de grupo, linha de token | Numero de requisicoes bem-sucedidas | Leia junto com Requisicoes e Erros para avaliar disponibilidade |
-| Erros | Linha de grupo, linha de token | Numero de requisicoes com falha | Se subir, veja primeiro Motivo da falha e logs de erro |
-| Consumo | Linha de grupo, linha de token | Consumo faturado no periodo, exportado no formato monetario do console | Contabilidade da equipe, rateio por projeto e deteccao de consumo anormal |
-| Taxa de cache | Linha de grupo, linha de token | Percentual de tokens que atingiram cache | Se estiver baixa, veja se o contexto muda muito ou nao pode ser reutilizado |
-| Tokens em cache | Linha de grupo, linha de token | Numero de tokens que atingiram cache | Estimar a escala real da economia de cache |
-| Requisicoes em cache | Linha de grupo, linha de token | Numero de requisicoes que atingiram cache | Mede quantas requisicoes realmente usaram cache |
-| Proporcao de requisicoes em cache | Linha de grupo, linha de token | Requisicoes em cache divididas pelo total de requisicoes | Mede cobertura de cache, nao apenas volume de tokens |
-| Media de tokens em cache | Linha de grupo, linha de token | Media de tokens em cache por requisicao | Comparar eficiencia de reutilizacao entre membros, servicos ou grupos |
-| Tempo medio | Linha de grupo, linha de token | Tempo medio de requisicao, em segundos | Se subir, investigar contexto longo, saida longa, cadeia de ferramentas e lentidao upstream |
-| Hora de inicio | Linha de grupo, linha de token | Primeira requisicao dentro da janela estatistica | Localizar inicio do problema ou do trafego |
-| Ultima requisicao | Linha de grupo, linha de token | Ultima requisicao dentro da janela estatistica | Saber se o problema ou trafego continua |
-| Motivo da falha | Linha de grupo | Motivos de falha frequentes e contagens; vazio ou `-` quando nao ha erros | Priorizar o erro com mais ocorrencias, nao apenas o ultimo log |
+| Sucesso | Linha de grupo, linha de token | Requisicoes bem-sucedidas que retornaram 2xx | Leia junto com Requisicoes e Erros para avaliar disponibilidade |
+| Erros | Linha de grupo, linha de token | Requisicoes com erro (4xx/5xx) | Se subir, veja primeiro Motivo da falha e logs de erro |
+| Consumo | Linha de grupo, linha de token | Consumo acumulado de cota/custo no periodo, exportado no formato monetario do console | Contabilidade da equipe, rateio por projeto e deteccao de consumo anormal |
+| Taxa de cache | Linha de grupo, linha de token | Taxa de cache = tokens com hit de cache / total de tokens | Quanto mais alta, mais economia; a parte em cache costuma ser cobrada mais barato ou de graca |
+| Tokens em cache | Linha de grupo, linha de token | Numero de tokens que atingiram cache no periodo | Essa parte costuma ser cobrada com alto desconto; quanto mais, maior a economia |
+| Requisicoes em cache | Linha de grupo, linha de token | Numero de requisicoes que atingiram cache pelo menos uma vez | Mede quantas requisicoes realmente usaram cache |
+| Proporcao de requisicoes em cache | Linha de grupo, linha de token | Proporcao de requisicoes em cache = requisicoes com cache / requisicoes totais | Quanto mais alta, mais chamadas recebem desconto de cache |
+| Media de tokens em cache | Linha de grupo, linha de token | Media de tokens por hit de cache | Comparar eficiencia de reutilizacao entre membros, servicos ou grupos |
+| Tempo medio | Linha de grupo, linha de token | Tempo medio por requisicao, em segundos | Quanto menor, mais rapido o upstream responde; se subir, investigar contexto longo, saida longa e ferramentas |
+| Hora de inicio | Linha de grupo, linha de token | Primeira aparicao desse grupo ou token no periodo atual | Localizar inicio do problema ou do trafego |
+| Ultima requisicao | Linha de grupo, linha de token | Aparicao mais recente desse grupo ou token no periodo atual | Saber se o problema ou trafego continua |
+| Motivo da falha | Linha de grupo | Principais motivos de falha por frequencia, com codigo de status e contagem; vazio ou `-` quando nao ha erros | Priorizar o erro com mais ocorrencias, nao apenas o ultimo log |
 
 ::: info Fonte dos campos
 As colunas exibidas sao geradas a partir de estatisticas agregadas. Para uso diario, siga a lista do console e as colunas do CSV; faca o mapeamento para campos brutos apenas em integracoes de API ou diagnostico tecnico.

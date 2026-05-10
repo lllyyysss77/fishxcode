@@ -53,24 +53,24 @@ La liste de la console et l'export CSV utilisent les memes colonnes d'affichage.
 | Colonne affichee | Lignes concernees | Description | Utilisation |
 |------------------|-------------------|-------------|-------------|
 | Type | Ligne groupe, ligne token | Indique si la ligne est un resume `Groupe` ou un detail `Token` | Voir d'abord les lignes groupe, puis les lignes token pour localiser le membre ou token |
-| Groupe | Ligne groupe, ligne token | Groupe de la requete, par exemple forfait, groupe par defaut ou groupe de modele | Voir si le probleme se concentre sur un forfait, un modele ou un pool amont |
+| Groupe | Ligne groupe, ligne token | Groupes vus sur la periode choisie, incluant groupes a l'usage, groupes de forfait, groupe par defaut ou groupe de modele | Voir si le probleme se concentre sur un forfait, un modele ou un pool amont |
 | ID utilisateur | Ligne token | ID de l'utilisateur qui a utilise le token | Localiser le compte membre lors d'un diagnostic entreprise |
 | Nom d'utilisateur | Ligne token | Nom d'utilisateur qui a utilise le token | Rapports d'equipe, communication avec le membre et controle des droits |
 | Token | Ligne token | Nom du token configure dans la console | Verifier si l'anomalie est limitee a un token |
-| Taux de succes | Ligne groupe, ligne token | Pourcentage de requetes reussies | Si le taux est nettement plus bas que les lignes voisines, verifier ce groupe ou token en priorite |
+| Taux de succes | Ligne groupe, ligne token | Taux de succes = requetes reussies / total des requetes | A surveiller sous 80 % ; si le taux est nettement plus bas que les lignes voisines, verifier ce groupe ou token en priorite |
 | Requetes | Ligne groupe, ligne token | Nombre total de requetes sur la periode choisie | Ne pas sur-interpreter le taux de succes si l'echantillon est faible |
-| Succes | Ligne groupe, ligne token | Nombre de requetes reussies | Le lire avec Requetes et Erreurs pour evaluer la disponibilite |
-| Erreurs | Ligne groupe, ligne token | Nombre de requetes echouees | Si le nombre monte, verifier d'abord Cause d'echec et les journaux d'erreur |
-| Cout | Ligne groupe, ligne token | Cout facture sur la periode, exporte au format monetaire de la console | Comptabilite d'equipe, repartition par projet et detection de cout anormal |
-| Taux de cache | Ligne groupe, ligne token | Part des tokens qui ont touche le cache | Si le taux est bas, verifier si le contexte change trop souvent ou ne se reutilise pas |
-| Tokens en cache | Ligne groupe, ligne token | Nombre de tokens qui ont touche le cache | Estimer l'echelle reelle de l'economie de cache |
-| Requetes en cache | Ligne groupe, ligne token | Nombre de requetes ayant touche le cache | Mesurer combien de requetes ont vraiment utilise le cache |
-| Part requetes cache | Ligne groupe, ligne token | Requetes en cache divisees par le total des requetes | Mesurer la couverture du cache, pas seulement le volume de tokens |
-| Tokens cache moyens | Ligne groupe, ligne token | Nombre moyen de tokens en cache par requete | Comparer l'efficacite de reutilisation entre membres, services ou groupes |
-| Temps moyen | Ligne groupe, ligne token | Temps moyen de requete, en secondes | Si le temps monte, verifier longs contextes, longues sorties, chaines d'outils et lenteur amont |
-| Heure de debut | Ligne groupe, ligne token | Premiere requete dans la fenetre statistique | Situer le debut du probleme ou du trafic |
-| Derniere requete | Ligne groupe, ligne token | Derniere requete dans la fenetre statistique | Voir si le probleme ou le trafic continue |
-| Cause d'echec | Ligne groupe | Causes d'echec frequentes et nombre d'occurrences ; vide ou `-` sans erreur | Traiter d'abord l'erreur la plus frequente, pas seulement la derniere ligne |
+| Succes | Ligne groupe, ligne token | Nombre de requetes reussies ayant retourne 2xx | Le lire avec Requetes et Erreurs pour evaluer la disponibilite |
+| Erreurs | Ligne groupe, ligne token | Nombre de requetes en erreur (4xx/5xx) | Si le nombre monte, verifier d'abord Cause d'echec et les journaux d'erreur |
+| Cout | Ligne groupe, ligne token | Consommation de quota/cout cumulee sur la periode, exportee au format monetaire de la console | Comptabilite d'equipe, repartition par projet et detection de cout anormal |
+| Taux de cache | Ligne groupe, ligne token | Taux de cache = tokens en cache / total des tokens | Plus il est haut, plus c'est economique ; les parties en cache sont souvent facturees moins cher ou gratuitement |
+| Tokens en cache | Ligne groupe, ligne token | Nombre de tokens ayant touche le cache sur la periode | Cette partie est souvent facturee avec une forte reduction ; plus il y en a, plus l'economie est grande |
+| Requetes en cache | Ligne groupe, ligne token | Nombre de requetes ayant touche le cache au moins une fois | Mesurer combien de requetes ont vraiment utilise le cache |
+| Part requetes cache | Ligne groupe, ligne token | Part requetes cache = requetes avec cache / total des requetes | Plus elle est haute, plus d'appels beneficient de la remise cache |
+| Tokens cache moyens | Ligne groupe, ligne token | Nombre moyen de tokens par hit de cache | Comparer l'efficacite de reutilisation entre membres, services ou groupes |
+| Temps moyen | Ligne groupe, ligne token | Temps moyen par requete, en secondes | Plus il est bas, plus l'amont repond vite ; si le temps monte, verifier longs contextes, longues sorties et chaines d'outils |
+| Heure de debut | Ligne groupe, ligne token | Premiere apparition de ce groupe ou token dans la periode courante | Situer le debut du probleme ou du trafic |
+| Derniere requete | Ligne groupe, ligne token | Apparition la plus recente de ce groupe ou token dans la periode courante | Voir si le probleme ou le trafic continue |
+| Cause d'echec | Ligne groupe | Principales causes d'echec par frequence, avec code de statut et nombre ; vide ou `-` sans erreur | Traiter d'abord l'erreur la plus frequente, pas seulement la derniere ligne |
 
 ::: info Source des champs
 Les colonnes affichees sont generees a partir de statistiques agregees. Pour l'usage quotidien, prenez la liste console et l'export CSV comme reference ; ne faites le lien avec les noms de champs bruts que pour une integration API ou un diagnostic technique.

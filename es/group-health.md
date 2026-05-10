@@ -53,24 +53,24 @@ La lista de la consola y la exportacion CSV usan las mismas columnas visibles. L
 | Columna visible | Aplica a | Descripcion | Uso recomendado |
 |-----------------|----------|-------------|-----------------|
 | Tipo | Fila de grupo, fila de token | Indica si la fila es resumen `Grupo` o detalle `Token` | Mira primero las filas de grupo y despues las de token para ubicar miembro o Token |
-| Grupo | Fila de grupo, fila de token | Grupo de la solicitud, como paquete, grupo por defecto o grupo de modelo | Saber si el problema se concentra en un paquete, modelo o pool upstream |
+| Grupo | Fila de grupo, fila de token | Grupos que aparecieron en el periodo seleccionado, incluidos grupos por uso, grupos de paquete, grupo por defecto o grupo de modelo | Saber si el problema se concentra en un paquete, modelo o pool upstream |
 | ID de usuario | Fila de token | ID del usuario que uso el token | Ubicar la cuenta del miembro en diagnosticos empresariales |
 | Nombre de usuario | Fila de token | Nombre del usuario que uso el token | Reportes de equipo, comunicacion con miembros y revision de permisos |
 | Token | Fila de token | Nombre del Token configurado en la consola | Saber si la anomalia esta aislada a un Token |
-| Tasa de exito | Fila de grupo, fila de token | Porcentaje de solicitudes correctas | Si es claramente menor que otras filas, revisar primero ese grupo o token |
+| Tasa de exito | Fila de grupo, fila de token | Tasa de exito = solicitudes correctas / total de solicitudes | Conviene revisarla si baja de 80 %; si es claramente menor que otras filas, revisar primero ese grupo o token |
 | Solicitudes | Fila de grupo, fila de token | Total de solicitudes en el periodo seleccionado | No sobreinterpretar la tasa de exito si la muestra es pequena |
-| Exito | Fila de grupo, fila de token | Numero de solicitudes correctas | Leerlo junto con Solicitudes y Errores para estimar disponibilidad |
-| Errores | Fila de grupo, fila de token | Numero de solicitudes fallidas | Si sube, revisar primero Causa de fallo y registros de error |
-| Consumo | Fila de grupo, fila de token | Consumo facturado en el periodo, exportado con formato monetario de la consola | Costeo de equipo, reparto por proyecto y deteccion de consumo anomalo |
-| Tasa de cache | Fila de grupo, fila de token | Porcentaje de tokens que hicieron hit de cache | Si es baja, revisar si el contexto cambia demasiado o no se reutiliza |
-| Tokens cache | Fila de grupo, fila de token | Numero de tokens que hicieron hit de cache | Estimar el ahorro real por cache |
-| Solicitudes cache | Fila de grupo, fila de token | Numero de solicitudes que hicieron hit de cache | Mide cuantas solicitudes usaron cache realmente |
-| Proporcion solicitudes cache | Fila de grupo, fila de token | Solicitudes con cache divididas por solicitudes totales | Mide cobertura de cache, no solo volumen de tokens |
-| Tokens cache medios | Fila de grupo, fila de token | Promedio de tokens cache por solicitud | Comparar eficiencia de reutilizacion entre miembros, servicios o grupos |
-| Tiempo medio | Fila de grupo, fila de token | Tiempo medio de solicitud, en segundos | Si sube, revisar contexto largo, salida larga, herramientas y lentitud upstream |
-| Hora de inicio | Fila de grupo, fila de token | Primera solicitud dentro de la ventana estadistica | Ubicar inicio del problema o del trafico |
-| Ultima solicitud | Fila de grupo, fila de token | Ultima solicitud dentro de la ventana estadistica | Saber si el problema o trafico continua |
-| Causa de fallo | Fila de grupo | Causas de fallo frecuentes y recuentos; vacio o `-` si no hay errores | Priorizar el error mas repetido, no solo el ultimo registro |
+| Exito | Fila de grupo, fila de token | Solicitudes correctas que devolvieron 2xx | Leerlo junto con Solicitudes y Errores para estimar disponibilidad |
+| Errores | Fila de grupo, fila de token | Solicitudes con error (4xx/5xx) | Si sube, revisar primero Causa de fallo y registros de error |
+| Consumo | Fila de grupo, fila de token | Consumo acumulado de cuota/costo en el periodo, exportado con formato monetario de la consola | Costeo de equipo, reparto por proyecto y deteccion de consumo anomalo |
+| Tasa de cache | Fila de grupo, fila de token | Tasa de cache = tokens con hit de cache / total de tokens | Cuanto mas alta, mas ahorro; la parte con cache suele cobrarse mas barata o gratis |
+| Tokens cache | Fila de grupo, fila de token | Numero de tokens que hicieron hit de cache en el periodo | Esta parte suele cobrarse con alto descuento; cuanto mas, mayor ahorro |
+| Solicitudes cache | Fila de grupo, fila de token | Numero de solicitudes que hicieron hit de cache al menos una vez | Mide cuantas solicitudes usaron cache realmente |
+| Proporcion solicitudes cache | Fila de grupo, fila de token | Proporcion solicitudes cache = solicitudes con cache / solicitudes totales | Cuanto mas alta, mas llamadas reciben descuento por cache |
+| Tokens cache medios | Fila de grupo, fila de token | Promedio de tokens por hit de cache | Comparar eficiencia de reutilizacion entre miembros, servicios o grupos |
+| Tiempo medio | Fila de grupo, fila de token | Tiempo medio por solicitud, en segundos | Cuanto mas bajo, mas rapido responde el upstream; si sube, revisar contexto largo, salida larga y herramientas |
+| Hora de inicio | Fila de grupo, fila de token | Primera aparicion de este grupo o token en el periodo actual | Ubicar inicio del problema o del trafico |
+| Ultima solicitud | Fila de grupo, fila de token | Aparicion mas reciente de este grupo o token en el periodo actual | Saber si el problema o trafico continua |
+| Causa de fallo | Fila de grupo | Principales causas de fallo por frecuencia, con codigo de estado y recuento; vacio o `-` si no hay errores | Priorizar el error mas repetido, no solo el ultimo registro |
 
 ::: info Fuente de campos
 Las columnas visibles se generan desde estadisticas agregadas. Para uso diario, toma como referencia la lista de consola y las columnas CSV; solo mapealas a nombres tecnicos de campos al integrar una API o hacer diagnostico tecnico.

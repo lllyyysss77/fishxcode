@@ -53,24 +53,24 @@ The console list and CSV export use the same display columns. The list contains 
 | Display column | Applies to | Description | How to use it |
 |----------------|------------|-------------|---------------|
 | Type | Group row, token row | Identifies whether the row is a `Group` summary or a `Token` detail | Check group rows first for overall status, then token rows for a member or token |
-| Group | Group row, token row | Request group, such as a plan group, default group, or model-specific group | Check whether the issue is concentrated in one plan, model, or upstream resource pool |
+| Group | Group row, token row | Groups seen in the selected time range, including pay-as-you-go groups, plan groups, default groups, or model-specific groups | Check whether the issue is concentrated in one plan, model, or upstream resource pool |
 | User ID | Token row | User ID that used the token | Use it to locate the member account in enterprise troubleshooting |
 | Username | Token row | Username that used the token | Use it for team reports, member communication, and permission checks |
 | Token | Token row | Token name configured in the console | Check whether the issue is isolated to one token |
-| Success Rate | Group row, token row | Percentage of successful requests | If it is clearly lower than peer rows, check that group or token first |
+| Success Rate | Group row, token row | Success Rate = successful requests / total requests | Pay attention when it is below 80%; if it is clearly lower than peer rows, check that group or token first |
 | Requests | Group row, token row | Total request count in the selected time range | Avoid over-reading success rate when the sample size is small |
-| Success | Group row, token row | Successful request count | Read it together with Requests and Errors to judge availability |
-| Errors | Group row, token row | Failed request count | When errors rise, check Failure Reason and error logs first |
-| Cost | Group row, token row | Billing cost in the selected time range, exported in console currency format | Use it for team cost accounting, project allocation, and abnormal cost detection |
-| Cache Hit Rate | Group row, token row | Percentage of tokens that hit cache | If low, check whether context changes too often or cannot be reused |
-| Cache Tokens | Group row, token row | Number of tokens that hit cache | Use it to estimate the actual cache saving scale |
-| Cache Requests | Group row, token row | Number of requests that hit cache | Shows how many requests actually used cache |
-| Cache Request Share | Group row, token row | Cache request count divided by total request count | Shows cache coverage, not only cache token volume |
-| Avg Cache Tokens | Group row, token row | Average cache tokens hit per request | Compare cache reuse efficiency across members, services, or groups |
-| Avg Latency | Group row, token row | Average request latency in seconds | When latency rises, check long context, long output, tool chains, and slow upstream responses |
-| Start Time | Group row, token row | First request time in the current statistics window | Locate when the issue or traffic started |
-| Latest Request | Group row, token row | Last request time in the current statistics window | Check whether the issue or traffic is still ongoing |
-| Failure Reason | Group row | High-frequency failure reasons and counts; empty or `-` when there are no errors | Handle the most frequent error first; do not rely only on the latest log entry |
+| Success | Group row, token row | Successful requests that returned 2xx | Read it together with Requests and Errors to judge availability |
+| Errors | Group row, token row | Requests that returned errors (4xx/5xx) | When errors rise, check Failure Reason and error logs first |
+| Cost | Group row, token row | Accumulated quota/cost consumption in the selected time range, exported in console currency format | Use it for team cost accounting, project allocation, and abnormal cost detection |
+| Cache Hit Rate | Group row, token row | Cache Hit Rate = cache-hit tokens / total tokens | Higher is cheaper; cache-hit parts are usually billed at a lower price or free |
+| Cache Tokens | Group row, token row | Number of cache-hit tokens in the selected time range | This part is usually billed at a low discount, so more means more savings |
+| Cache Requests | Group row, token row | Number of requests that hit cache at least once | Shows how many requests actually used cache |
+| Cache Request Share | Group row, token row | Cache Request Share = cache-hit requests / total requests | Higher means more calls benefited from cache discounts |
+| Avg Cache Tokens | Group row, token row | Average number of tokens per cache hit | Compare cache reuse efficiency across members, services, or groups |
+| Avg Latency | Group row, token row | Average request latency in seconds | Lower means faster upstream response; when latency rises, check long context, long output, and tool chains |
+| Start Time | Group row, token row | First time this group or token appeared in the current time range | Locate when the issue or traffic started |
+| Latest Request | Group row, token row | Most recent time this group or token appeared in the current time range | Check whether the issue or traffic is still ongoing |
+| Failure Reason | Group row | Top failure reasons by frequency, including status code and count; empty or `-` when there are no errors | Handle the most frequent error first; do not rely only on the latest log entry |
 
 ::: info Field source
 The display columns are generated from backend statistics. For day-to-day use, follow the console list and CSV export columns; only map them to raw field names when integrating an API or doing technical troubleshooting.
