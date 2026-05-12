@@ -2,7 +2,7 @@
 
 ## 视频教程
 
-<VideoPlayer src="https://s3.hi168.com/hi168-27900-8344owwk/codex.mp4" />
+<VideoPlayer src="https://www.hi168.com/api/v2/s3/api/public/share/dl/992402691ac054896144c542cd7003e5" />
 
 ## 安装 Codex
 

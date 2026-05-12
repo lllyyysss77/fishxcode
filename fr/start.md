@@ -4,7 +4,7 @@
 
 ## Tutoriel vidéo
 
-<VideoPlayer src="https://s3.hi168.com/hi168-27900-8344owwk/claude0401.mp4" />
+<VideoPlayer src="https://www.hi168.com/api/v2/s3/api/public/share/dl/fd3731b95585381211fd621eb1914b2f" />
 
 ## 1. Préparation de l'environnement
 
