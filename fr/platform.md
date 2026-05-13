@@ -88,6 +88,9 @@ Après connexion, toutes les opérations sont centralisées dans la console. Ret
 | Droid CLI | `/droid` | Guide d'intégration Droid CLI |
 | OpenCode | `/opencode` | Guide d'intégration OpenCode |
 | OpenClaw | `/openclaw` | Guide d'intégration OpenClaw |
+| WorkBuddy | `/workbuddy` | Guide d'intégration WorkBuddy |
+| CodeBuddy | `/codebuddy` | Guide d'intégration CodeBuddy |
+| QClaw | `/qclaw` | Guide d'intégration QClaw |
 | Comparaison d'outils | `/compare` | Comparaison entre les différents outils |
 | Modèles supportés | `/models` | Liste des modèles et périmètre de fonctionnalités |
 | FAQ | `/faq` | Questions fréquentes et dépannage |

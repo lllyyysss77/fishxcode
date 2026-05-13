@@ -309,7 +309,10 @@ export default withPwa(defineConfig({
               { text: 'Droid CLI', link: '/droid' },
               { text: 'OpenCode', link: '/opencode' },
               { text: 'Hermes', link: '/hermes' },
-              { text: 'OpenClaw', link: '/openclaw' }
+              { text: 'OpenClaw', link: '/openclaw' },
+              { text: 'WorkBuddy', link: '/workbuddy' },
+              { text: 'CodeBuddy', link: '/codebuddy' },
+              { text: 'QClaw', link: '/qclaw' }
             ]
           },
           {
@@ -355,7 +358,10 @@ export default withPwa(defineConfig({
               { text: 'Droid CLI', link: '/droid' },
               { text: 'OpenCode', link: '/opencode' },
               { text: 'Hermes', link: '/hermes' },
-              { text: 'OpenClaw', link: '/openclaw' }
+              { text: 'OpenClaw', link: '/openclaw' },
+              { text: 'WorkBuddy', link: '/workbuddy' },
+              { text: 'CodeBuddy', link: '/codebuddy' },
+              { text: 'QClaw', link: '/qclaw' }
             ]
           },
           {
@@ -412,7 +418,10 @@ export default withPwa(defineConfig({
               { text: 'Droid CLI', link: '/en/droid' },
               { text: 'OpenCode', link: '/en/opencode' },
               { text: 'Hermes', link: '/en/hermes' },
-              { text: 'OpenClaw', link: '/en/openclaw' }
+              { text: 'OpenClaw', link: '/en/openclaw' },
+              { text: 'WorkBuddy', link: '/en/workbuddy' },
+              { text: 'CodeBuddy', link: '/en/codebuddy' },
+              { text: 'QClaw', link: '/en/qclaw' }
             ]
           },
           {
@@ -458,7 +467,10 @@ export default withPwa(defineConfig({
               { text: 'Droid CLI', link: '/en/droid' },
               { text: 'OpenCode', link: '/en/opencode' },
               { text: 'Hermes', link: '/en/hermes' },
-              { text: 'OpenClaw', link: '/en/openclaw' }
+              { text: 'OpenClaw', link: '/en/openclaw' },
+              { text: 'WorkBuddy', link: '/en/workbuddy' },
+              { text: 'CodeBuddy', link: '/en/codebuddy' },
+              { text: 'QClaw', link: '/en/qclaw' }
             ]
           },
           {
@@ -515,7 +527,10 @@ export default withPwa(defineConfig({
               { text: 'Droid CLI', link: '/fr/droid' },
               { text: 'OpenCode', link: '/fr/opencode' },
               { text: 'Hermes', link: '/fr/hermes' },
-              { text: 'OpenClaw', link: '/fr/openclaw' }
+              { text: 'OpenClaw', link: '/fr/openclaw' },
+              { text: 'WorkBuddy', link: '/fr/workbuddy' },
+              { text: 'CodeBuddy', link: '/fr/codebuddy' },
+              { text: 'QClaw', link: '/fr/qclaw' }
             ]
           },
           {
@@ -561,7 +576,10 @@ export default withPwa(defineConfig({
               { text: 'Droid CLI', link: '/fr/droid' },
               { text: 'OpenCode', link: '/fr/opencode' },
               { text: 'Hermes', link: '/fr/hermes' },
-              { text: 'OpenClaw', link: '/fr/openclaw' }
+              { text: 'OpenClaw', link: '/fr/openclaw' },
+              { text: 'WorkBuddy', link: '/fr/workbuddy' },
+              { text: 'CodeBuddy', link: '/fr/codebuddy' },
+              { text: 'QClaw', link: '/fr/qclaw' }
             ]
           },
           {
@@ -618,7 +636,10 @@ export default withPwa(defineConfig({
               { text: 'Droid CLI', link: '/es/droid' },
               { text: 'OpenCode', link: '/es/opencode' },
               { text: 'Hermes', link: '/es/hermes' },
-              { text: 'OpenClaw', link: '/es/openclaw' }
+              { text: 'OpenClaw', link: '/es/openclaw' },
+              { text: 'WorkBuddy', link: '/es/workbuddy' },
+              { text: 'CodeBuddy', link: '/es/codebuddy' },
+              { text: 'QClaw', link: '/es/qclaw' }
             ]
           },
           {
@@ -664,7 +685,10 @@ export default withPwa(defineConfig({
               { text: 'Droid CLI', link: '/es/droid' },
               { text: 'OpenCode', link: '/es/opencode' },
               { text: 'Hermes', link: '/es/hermes' },
-              { text: 'OpenClaw', link: '/es/openclaw' }
+              { text: 'OpenClaw', link: '/es/openclaw' },
+              { text: 'WorkBuddy', link: '/es/workbuddy' },
+              { text: 'CodeBuddy', link: '/es/codebuddy' },
+              { text: 'QClaw', link: '/es/qclaw' }
             ]
           },
           {
@@ -721,7 +745,10 @@ export default withPwa(defineConfig({
               { text: 'Droid CLI', link: '/pt/droid' },
               { text: 'OpenCode', link: '/pt/opencode' },
               { text: 'Hermes', link: '/pt/hermes' },
-              { text: 'OpenClaw', link: '/pt/openclaw' }
+              { text: 'OpenClaw', link: '/pt/openclaw' },
+              { text: 'WorkBuddy', link: '/pt/workbuddy' },
+              { text: 'CodeBuddy', link: '/pt/codebuddy' },
+              { text: 'QClaw', link: '/pt/qclaw' }
             ]
           },
           {
@@ -767,7 +794,10 @@ export default withPwa(defineConfig({
               { text: 'Droid CLI', link: '/pt/droid' },
               { text: 'OpenCode', link: '/pt/opencode' },
               { text: 'Hermes', link: '/pt/hermes' },
-              { text: 'OpenClaw', link: '/pt/openclaw' }
+              { text: 'OpenClaw', link: '/pt/openclaw' },
+              { text: 'WorkBuddy', link: '/pt/workbuddy' },
+              { text: 'CodeBuddy', link: '/pt/codebuddy' },
+              { text: 'QClaw', link: '/pt/qclaw' }
             ]
           },
           {

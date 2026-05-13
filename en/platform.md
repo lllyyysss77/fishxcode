@@ -88,6 +88,9 @@ After logging in, all operations are centralized in the console. Use the followi
 | Droid CLI | `/droid` | Droid CLI integration guide |
 | OpenCode | `/opencode` | OpenCode integration guide |
 | OpenClaw | `/openclaw` | OpenClaw integration guide |
+| WorkBuddy | `/workbuddy` | WorkBuddy integration guide |
+| CodeBuddy | `/codebuddy` | CodeBuddy integration guide |
+| QClaw | `/qclaw` | QClaw integration guide |
 | Tool Comparison | `/compare` | Multi-tool comparison guide |
 | Supported Models | `/models` | Model list and capability overview |
 | FAQ | `/faq` | Frequently asked questions and troubleshooting |

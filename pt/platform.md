@@ -88,6 +88,9 @@ Após o login, todas as operações são realizadas no console. Localize rapidam
 | Droid CLI | `/droid` | Guia de integração do Droid CLI |
 | OpenCode | `/opencode` | Guia de integração do OpenCode |
 | OpenClaw | `/openclaw` | Guia de integração do OpenClaw |
+| WorkBuddy | `/workbuddy` | Guia de integração do WorkBuddy |
+| CodeBuddy | `/codebuddy` | Guia de integração do CodeBuddy |
+| QClaw | `/qclaw` | Guia de integração do QClaw |
 | Comparação de ferramentas | `/compare` | Comparação entre múltiplas ferramentas |
 | Modelos suportados | `/models` | Lista de modelos e escopo de capacidades |
 | FAQ | `/faq` | Perguntas frequentes e solução de problemas |
