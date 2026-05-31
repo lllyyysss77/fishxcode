@@ -32,16 +32,23 @@ bunx --global @openai/codex
 2. Crie `~/.codex/config.toml`:
 
    ```toml
-   model = "gpt-5.3-codex"
    model_provider = "fishxcode"
+   model = "gpt-5.4"
+   review_model = "gpt-5.4"
+   model_reasoning_effort = "medium"
+   model_reasoning_summary = "detailed"
+   disable_response_storage = true
    preferred_auth_method = "apikey"
+   model_verbosity = "high"
 
    [model_providers.fishxcode]
    name = "OpenAI using Chat Completions"
-   base_url = "https://fishxcode.com/v1"
+   base_url = "https://api.fishxcode.ai/v1"
    wire_api = "responses"
-   query_params = {}
-   stream_idle_timeout_ms = 300000
+   requires_openai_auth = true
+
+   [features]
+   skills = true
    ```
 
 3. Crie `~/.codex/auth.json`, definindo `OPENAI_API_KEY` com sua API Key do FishXCode:
