@@ -43,7 +43,7 @@ bunx --global @openai/codex
 
    [model_providers.fishxcode]
    name = "OpenAI using Chat Completions"
-   base_url = "https://api.fishxcode.ai/v1"
+   base_url = "https://api.fishxcode.com/v1"
    wire_api = "responses"
    requires_openai_auth = true
 
