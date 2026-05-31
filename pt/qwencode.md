@@ -28,13 +28,13 @@ bunx --global @qwen-code/qwen-code
 
 ```bash [Linux/macOS]
 export OPENAI_API_KEY="sk-xxx"
-export OPENAI_BASE_URL="https://fishxcode.com/v1"
+export OPENAI_BASE_URL="https://api.fishxcode.com/v1"
 export OPENAI_MODEL="gpt-5"
 ```
 
 ```powershell [Windows PowerShell]
 $env:OPENAI_API_KEY="sk-xxx"
-$env:OPENAI_BASE_URL="https://fishxcode.com/v1"
+$env:OPENAI_BASE_URL="https://api.fishxcode.com/v1"
 $env:OPENAI_MODEL="gpt-5"
 ```
 

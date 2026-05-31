@@ -45,7 +45,7 @@ $env:FISHXCODE_TOKEN="sk-xxx"
       "npm": "@ai-sdk/anthropic",
       "name": "fishxcode-anthropic",
       "options": {
-        "baseURL": "https://fishxcode.com/v1",
+        "baseURL": "https://api.fishxcode.com/v1",
         "apiKey": "{env:FISHXCODE_TOKEN}"
       },
       "models": {
@@ -58,12 +58,12 @@ $env:FISHXCODE_TOKEN="sk-xxx"
       "npm": "@ai-sdk/openai-compatible",
       "name": "fishxcode-openai",
       "options": {
-        "baseURL": "https://fishxcode.com/v1",
+        "baseURL": "https://api.fishxcode.com/v1",
         "apiKey": "{env:FISHXCODE_TOKEN}"
       },
       "models": {
-        "gpt-5.2-codex": {
-          "name": "gpt-5.2-codex"
+        "gpt-5.4": {
+          "name": "gpt-5.4"
         }
       }
     }

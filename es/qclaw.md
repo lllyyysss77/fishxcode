@@ -9,7 +9,7 @@ Al conectar QClaw con una API de modelos externos, usa preferentemente el protoc
 | Elemento de configuración | Valor |
 | --- | --- |
 | Protocol | `OpenAI Compatible` |
-| Base URL | `https://fishxcode.com/v1` |
+| Base URL | `https://api.fishxcode.com/v1` |
 | API Key | API Key creada en la consola de FishXCode |
 | Modelo OpenAI | `gpt-5.5` |
 | Modelo Claude | `claude-opus-4-7` |
@@ -17,7 +17,7 @@ Al conectar QClaw con una API de modelos externos, usa preferentemente el protoc
 Si QClaw exige un endpoint completo, usa:
 
 ```text
-https://fishxcode.com/v1/chat/completions
+https://api.fishxcode.com/v1/chat/completions
 ```
 
 ## 2. Configurar desde la interfaz de ajustes
@@ -26,7 +26,7 @@ Si tu versión de QClaw ofrece una interfaz gráfica, puedes rellenarla así:
 
 ```text
 Provider: OpenAI Compatible
-Base URL: https://fishxcode.com/v1
+Base URL: https://api.fishxcode.com/v1
 API Key: sk-你的FishXCode-Token
 Model: claude-opus-4-7
 ```
@@ -44,7 +44,7 @@ Si tu versión de QClaw usa `~/.qclaw/config.yaml`, toma como referencia esta pl
 ```yaml
 llm:
   provider: openai-compatible
-  base_url: https://fishxcode.com/v1
+  base_url: https://api.fishxcode.com/v1
   api_key: sk-你的FishXCode-Token
   model: claude-opus-4-7
   max_tokens: 8192
@@ -55,7 +55,7 @@ Para cambiar al modelo OpenAI, solo reemplaza `model`:
 ```yaml
 llm:
   provider: openai-compatible
-  base_url: https://fishxcode.com/v1
+  base_url: https://api.fishxcode.com/v1
   api_key: sk-你的FishXCode-Token
   model: gpt-5.5
   max_tokens: 8192
@@ -66,7 +66,7 @@ Si el cliente requiere la dirección completa de la interfaz, puedes cambiarla a
 ```yaml
 llm:
   provider: openai-compatible
-  url: https://fishxcode.com/v1/chat/completions
+  url: https://api.fishxcode.com/v1/chat/completions
   api_key: sk-你的FishXCode-Token
   model: claude-opus-4-7
   max_tokens: 8192
@@ -83,14 +83,14 @@ Si QClaw admite variables de entorno, también puedes usar:
 ::: code-group
 
 ```bash [Linux/macOS]
-export OPENAI_BASE_URL="https://fishxcode.com/v1"
+export OPENAI_BASE_URL="https://api.fishxcode.com/v1"
 export OPENAI_API_KEY="sk-你的FishXCode-Token"
 export QCLAW_MODEL="claude-opus-4-7"
 qclaw
 ```
 
 ```powershell [Windows PowerShell]
-$env:OPENAI_BASE_URL="https://fishxcode.com/v1"
+$env:OPENAI_BASE_URL="https://api.fishxcode.com/v1"
 $env:OPENAI_API_KEY="sk-你的FishXCode-Token"
 $env:QCLAW_MODEL="claude-opus-4-7"
 qclaw
@@ -107,7 +107,7 @@ Primero verifica con la interfaz compatible con OpenAI que la API Key sea válid
 ::: code-group
 
 ```bash [Modelo Claude]
-curl https://fishxcode.com/v1/chat/completions \
+curl https://api.fishxcode.com/v1/chat/completions \
   -H "content-type: application/json" \
   -H "authorization: Bearer sk-你的FishXCode-Token" \
   -d '{
@@ -119,7 +119,7 @@ curl https://fishxcode.com/v1/chat/completions \
 ```
 
 ```bash [Modelo GPT]
-curl https://fishxcode.com/v1/chat/completions \
+curl https://api.fishxcode.com/v1/chat/completions \
   -H "content-type: application/json" \
   -H "authorization: Bearer sk-你的FishXCode-Token" \
   -d '{
@@ -144,7 +144,7 @@ Si curl no funciona, es muy probable que tampoco funcione en QClaw. Comprueba pr
 
 ### Error 404 o dirección de interfaz incorrecta
 
-Si rellenas Base URL, usa `https://fishxcode.com/v1`. Si rellenas la URL completa, usa `https://fishxcode.com/v1/chat/completions`.
+Si rellenas Base URL, usa `https://api.fishxcode.com/v1`. Si rellenas la URL completa, usa `https://api.fishxcode.com/v1/chat/completions`.
 
 ### ¿Se puede usar el modelo Claude?
 

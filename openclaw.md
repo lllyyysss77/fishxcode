@@ -138,7 +138,7 @@ New-Item -ItemType File -Force -Path "$env:USERPROFILE\.openclaw\openclaw.json"
     "mode": "merge",
     "providers": {
       "fishxcode-anthropic": {
-        "baseUrl": "https://fishxcode.com",
+        "baseUrl": "https://api.fishxcode.com",
         "apiKey": "sk-你的FishXCode-Token",
         "api": "anthropic-messages",
         "models": [
@@ -179,7 +179,7 @@ New-Item -ItemType File -Force -Path "$env:USERPROFILE\.openclaw\openclaw.json"
     "mode": "merge",
     "providers": {
       "fishxcode-openai": {
-        "baseUrl": "https://fishxcode.com/v1",
+        "baseUrl": "https://api.fishxcode.com/v1",
         "apiKey": "sk-你的FishXCode-Token",
         "api": "openai-responses",
         "models": [
@@ -206,7 +206,7 @@ New-Item -ItemType File -Force -Path "$env:USERPROFILE\.openclaw\openclaw.json"
 ```
 
 ::: tip 提示
-**OpenAI 协议需要带 `/v1`**，即 `https://fishxcode.com/v1`。这是因为两种 SDK 的路径拼接逻辑不同。
+**OpenAI 协议需要带 `/v1`**，即 `https://api.fishxcode.com/v1`。这是因为两种 SDK 的路径拼接逻辑不同。
 :::
 
 #### 同时配置 Anthropic + OpenAI（推荐）
@@ -219,7 +219,7 @@ New-Item -ItemType File -Force -Path "$env:USERPROFILE\.openclaw\openclaw.json"
     "mode": "merge",
     "providers": {
       "fishxcode-anthropic": {
-        "baseUrl": "https://fishxcode.com",
+        "baseUrl": "https://api.fishxcode.com",
         "apiKey": "sk-你的FishXCode-Token",
         "api": "anthropic-messages",
         "models": [
@@ -242,7 +242,7 @@ New-Item -ItemType File -Force -Path "$env:USERPROFILE\.openclaw\openclaw.json"
         ]
       },
       "fishxcode-openai": {
-        "baseUrl": "https://fishxcode.com/v1",
+        "baseUrl": "https://api.fishxcode.com/v1",
         "apiKey": "sk-你的FishXCode-Token",
         "api": "openai-responses",
         "models": [
@@ -291,7 +291,7 @@ New-Item -ItemType File -Force -Path "$env:USERPROFILE\.openclaw\openclaw.json"
 
 | 字段 | 含义 | Anthropic（Claude） | OpenAI（GPT） |
 | --- | --- | --- | --- |
-| `baseUrl` | API 代理地址 | `https://fishxcode.com` | `https://fishxcode.com/v1` |
+| `baseUrl` | API 代理地址 | `https://api.fishxcode.com` | `https://api.fishxcode.com/v1` |
 | `apiKey` | 你的 API Key | `sk-你的FishXCode-Token` | `sk-你的FishXCode-Token` |
 | `api` | API 协议类型 | `anthropic-messages` | `openai-responses` |
 | `mode` | 配置合并模式 | `merge`（推荐） | `merge`（推荐） |
@@ -356,7 +356,7 @@ openclaw gateway restart
 ```json
 {
   "fishxcode-anthropic": {
-    "baseUrl": "https://fishxcode.com",
+    "baseUrl": "https://api.fishxcode.com",
     "apiKey": "your-api-key",
     "api": "anthropic-messages",
     "headers": {
@@ -377,12 +377,12 @@ openclaw gateway restart
 
 ```json
 {
-  "baseUrl": "https://fishxcode.com"
+  "baseUrl": "https://api.fishxcode.com"
 }
 ```
 
 ::: tip 提示
-OpenAI 协议需要带 `/v1`，即 `https://fishxcode.com/v1`。这是因为两种 SDK 的路径拼接逻辑不同。
+OpenAI 协议需要带 `/v1`，即 `https://api.fishxcode.com/v1`。这是因为两种 SDK 的路径拼接逻辑不同。
 :::
 
 ### api 字段只认三个值

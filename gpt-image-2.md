@@ -30,7 +30,7 @@
 
 这是最直接的方式，对应 OpenAI 兼容的图片生成接口。
 
-- 请求地址：`https://fishxcode.com/v1/images/generations`
+- 请求地址：`https://api.fishxcode.com/v1/images/generations`
 - 模型名称：`gpt-image-2`
 
 ### Python 示例
@@ -41,7 +41,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-你的FishXCode-Token",
-    base_url="https://fishxcode.com/v1"
+    base_url="https://api.fishxcode.com/v1"
 )
 
 result = client.images.generate(
@@ -64,7 +64,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   apiKey: "sk-你的FishXCode-Token",
-  baseURL: "https://fishxcode.com/v1",
+  baseURL: "https://api.fishxcode.com/v1",
 });
 
 const result = await client.images.generate({
@@ -81,7 +81,7 @@ fs.writeFileSync("gpt-image-2-output.png", Buffer.from(imageBase64, "base64"));
 
 ```bash
 curl --request POST \
-  --url https://fishxcode.com/v1/images/generations \
+  --url https://api.fishxcode.com/v1/images/generations \
   --header "Authorization: Bearer sk-你的FishXCode-Token" \
   --header "Content-Type: application/json" \
   --data '{
@@ -99,7 +99,7 @@ Images API 返回的核心结果通常是 `b64_json`，需要你在本地把 Bas
 
 如果你的工作流已经基于 `/v1/chat/completions`，也可以直接在对话接口里调用 `gpt-image-2`。
 
-- 请求地址：`https://fishxcode.com/v1/chat/completions`
+- 请求地址：`https://api.fishxcode.com/v1/chat/completions`
 - 模型名称：`gpt-image-2`
 
 ### Python 示例
@@ -109,7 +109,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-你的FishXCode-Token",
-    base_url="https://fishxcode.com/v1"
+    base_url="https://api.fishxcode.com/v1"
 )
 
 response = client.chat.completions.create(
@@ -129,7 +129,7 @@ print(response)
 
 ```bash
 curl --request POST \
-  --url https://fishxcode.com/v1/chat/completions \
+  --url https://api.fishxcode.com/v1/chat/completions \
   --header "Authorization: Bearer sk-你的FishXCode-Token" \
   --header "Content-Type: application/json" \
   --data '{
@@ -173,7 +173,7 @@ curl --request POST \
 在 Cherry Studio 中添加自定义提供商：
 
 - API Key：你的 FishXCode Token
-- Base URL：`https://fishxcode.com/v1`
+- Base URL：`https://api.fishxcode.com/v1`
 
 ### 2. 添加模型
 
@@ -191,7 +191,7 @@ gpt-image-2
 
 ::: tip 提示
 如果 Cherry Studio 中看不到图片结果，先检查两件事：
-- Base URL 是否写成了 `https://fishxcode.com/v1`
+- Base URL 是否写成了 `https://api.fishxcode.com/v1`
 - 当前版本的 Cherry Studio 是否对 OpenAI 图片接口做了完整适配
 :::
 
@@ -213,7 +213,7 @@ gpt-image-2
 1. 确认模型名写的是 `gpt-image-2`
 2. 确认 Token 来自 [FishXCode 控制台](https://fishxcode.com/console/token)
 3. 确认当前 Token 具备 `gpt-image-2` 的访问权限
-4. 确认 Base URL 写的是 `https://fishxcode.com/v1`
+4. 确认 Base URL 写的是 `https://api.fishxcode.com/v1`
 
 ### 为什么参数传多了会报错？
 

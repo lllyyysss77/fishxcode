@@ -47,14 +47,14 @@ Write the following content to `~/.codebuddy/models.json`:
       "name": "FishXCode GPT-5.5",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     },
     {
       "id": "claude-opus-4-7",
       "name": "FishXCode Claude Opus 4.7",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     }
   ],
   "availableModels": [
@@ -67,7 +67,7 @@ Write the following content to `~/.codebuddy/models.json`:
 ::: warning Important
 - Replace `sk-你的FishXCode-Token` with the actual API Key you created in the FishXCode console.
 - `availableModels` must include the model IDs from `models[].id`; otherwise, the new models may not appear in `/model`.
-- Third-party relay services require the full Chat Completions endpoint: `https://fishxcode.com/v1/chat/completions`.
+- Third-party relay services require the full Chat Completions endpoint: `https://api.fishxcode.com/v1/chat/completions`.
 :::
 
 ## 4. Keep Tencent Coding Plan Alongside FishXCode
@@ -89,14 +89,14 @@ If you also need to keep Tencent's official Coding Plan, append the FishXCode mo
       "name": "FishXCode GPT-5.5",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     },
     {
       "id": "claude-opus-4-7",
       "name": "FishXCode Claude Opus 4.7",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     }
   ],
   "availableModels": [
@@ -124,7 +124,7 @@ Check `availableModels` first. The model ID must appear in both `models[].id` an
 
 ### The model appears but calls fail
 
-Check `url` first. FishXCode third-party model configuration should use the full endpoint `https://fishxcode.com/v1/chat/completions`.
+Check `url` first. FishXCode third-party model configuration should use the full endpoint `https://api.fishxcode.com/v1/chat/completions`.
 
 ### Authentication fails
 

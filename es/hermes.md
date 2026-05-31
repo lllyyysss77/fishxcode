@@ -96,7 +96,7 @@ hermes model
 Completa los campos así:
 
 - Provider: `Custom endpoint (self-hosted / VLLM / etc.)`
-- API base URL: `https://fishxcode.com/v1`
+- API base URL: `https://api.fishxcode.com/v1`
 - API key: tu token de FishXCode
 - Model name: `gpt-5.4`
 - Context length: usa al menos `65536`
@@ -129,7 +129,7 @@ Después escribe esto en `~/.hermes/config.yaml`:
 model:
   default: gpt-5.4
   provider: custom
-  base_url: https://fishxcode.com/v1
+  base_url: https://api.fishxcode.com/v1
 ```
 
 ::: tip Consejo
@@ -146,7 +146,7 @@ Por ejemplo:
 model:
   default: claude-sonnet-4-5-20250929
   provider: custom
-  base_url: https://fishxcode.com/v1
+  base_url: https://api.fishxcode.com/v1
 ```
 
 ::: warning Nota
@@ -201,7 +201,7 @@ Hermes ha eliminado la compatibilidad con esas variables de entorno antiguas. Ah
 
 Revísalo en este orden:
 
-1. Asegúrate de que `base_url` sea `https://fishxcode.com/v1`
+1. Asegúrate de que `base_url` sea `https://api.fishxcode.com/v1`
 2. Asegúrate de que el token venga de la [Consola de FishXCode](https://fishxcode.com/console/token)
 3. Asegúrate de que `model.default` sea un ID de modelo válido, como `gpt-5.4`
 4. Asegúrate de que el contexto del modelo sea de al menos `65536`

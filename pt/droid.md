@@ -24,7 +24,7 @@ Edite `~/.factory/config.json`:
     {
       "model_display_name": "fishxcode-gpt5",
       "model": "gpt-5",
-      "base_url": "https://fishxcode.com/v1",
+      "base_url": "https://api.fishxcode.com/v1",
       "api_key": "SUA_CHAVE_FISHXCODE",
       "provider": "generic-chat-completion-api",
       "max_tokens": 1280000

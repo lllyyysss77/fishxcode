@@ -15,7 +15,7 @@ In the left sidebar, click **Models**.
 Click **Add model**, then fill in:
 
 - **API Key**: your FishXCode key
-- **Base URL**: `https://fishxcode.com/v1`
+- **Base URL**: `https://api.fishxcode.com/v1`
 
 ![Cursor Models Configuration Example](/img/start/cursor.png)
 

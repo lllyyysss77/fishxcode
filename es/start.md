@@ -87,7 +87,7 @@ npx zcf
 
 11. URL base de la API:
     ```
-    https://fishxcode.com
+    https://api.fishxcode.com
     ```
 
 12. API Key:
@@ -206,7 +206,7 @@ Añade lo siguiente en el `settings.json` de VSCode:
   "claudeCode.preferredLocation": "panel",
   "claudeCode.environmentVariables": [
     { "name": "ANTHROPIC_AUTH_TOKEN", "value": "reemplaza con tu API Key" },
-    { "name": "ANTHROPIC_BASE_URL", "value": "https://fishxcode.com/" }
+    { "name": "ANTHROPIC_BASE_URL", "value": "https://api.fishxcode.com/" }
   ]
 }
 ```
@@ -231,7 +231,7 @@ Ejecuta estos comandos en PowerShell para escribir variables del sistema permane
 
 ```powershell
 setx ANTHROPIC_AUTH_TOKEN "sk-xxx"
-setx ANTHROPIC_BASE_URL "https://fishxcode.com/"
+setx ANTHROPIC_BASE_URL "https://api.fishxcode.com/"
 ```
 
 ### "Unable to connect to Anthropic services"

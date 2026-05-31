@@ -15,14 +15,14 @@
 | `-p custom` | Utiliser un fournisseur personnalisé (méthode utilisée par FishXCode) |
 | `-t api_key` | Écriture équivalente, même effet que `-p custom` |
 | `-k "sk-xxx"` | Clé API |
-| `-u "https://fishxcode.com/"` | URL de base FishXCode |
+| `-u "https://api.fishxcode.com/"` | URL de base FishXCode |
 | `-M "claude-sonnet-4-5-20250929"` | Modèle principal |
 | `-H "claude-haiku-4-5-20251001"` | Modèle rapide |
 
 Exemple avec modèles spécifiés :
 
 ```bash
-npx zcf i -s -t api_key -k "sk-xxx" -u "https://fishxcode.com/" \
+npx zcf i -s -t api_key -k "sk-xxx" -u "https://api.fishxcode.com/" \
   -M "claude-sonnet-4-5-20250929" \
   -H "claude-haiku-4-5-20251001"
 ```

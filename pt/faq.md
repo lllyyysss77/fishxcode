@@ -78,7 +78,7 @@ echo $ANTHROPIC_AUTH_TOKEN
 
 ### Nao consigo me conectar ao FishXCode
 
-1. Confirme que o `BASE_URL` esta configurado como `https://fishxcode.com/` (atencao para a `/` no final)
+1. Confirme que o `BASE_URL` esta configurado como `https://api.fishxcode.com/` (atencao para a `/` no final)
 2. Verifique se `fishxcode.com` esta acessivel pela sua rede
 3. Se voce estiver atras de um proxy corporativo, confira as configuracoes do proxy
 

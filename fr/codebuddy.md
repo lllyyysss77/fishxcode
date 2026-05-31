@@ -47,14 +47,14 @@ La configuration des modèles tiers dans CodeBuddy Code utilise le protocole Ope
       "name": "FishXCode GPT-5.5",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     },
     {
       "id": "claude-opus-4-7",
       "name": "FishXCode Claude Opus 4.7",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     }
   ],
   "availableModels": [
@@ -67,7 +67,7 @@ La configuration des modèles tiers dans CodeBuddy Code utilise le protocole Ope
 ::: warning Important
 - Remplacez `sk-你的FishXCode-Token` par la vraie API Key générée dans la console FishXCode.
 - `availableModels` doit inclure les identifiants définis dans `models[].id`; sinon `/model` peut ne pas afficher les nouveaux modèles.
-- Le point d’accès tiers doit être l’adresse complète Chat Completions : `https://fishxcode.com/v1/chat/completions`.
+- Le point d’accès tiers doit être l’adresse complète Chat Completions : `https://api.fishxcode.com/v1/chat/completions`.
 :::
 
 ## 4. Conserver le plan Tencent en parallèle
@@ -89,14 +89,14 @@ Si vous devez aussi conserver le plan officiel Tencent, vous pouvez ajouter les 
       "name": "FishXCode GPT-5.5",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     },
     {
       "id": "claude-opus-4-7",
       "name": "FishXCode Claude Opus 4.7",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     }
   ],
   "availableModels": [
@@ -124,7 +124,7 @@ Vérifiez d’abord `availableModels`. L’identifiant du modèle doit apparaît
 
 ### Le modèle apparaît mais l’appel échoue
 
-Vérifiez d’abord `url`. La configuration des modèles tiers FishXCode doit utiliser l’adresse complète `https://fishxcode.com/v1/chat/completions`.
+Vérifiez d’abord `url`. La configuration des modèles tiers FishXCode doit utiliser l’adresse complète `https://api.fishxcode.com/v1/chat/completions`.
 
 ### Échec d’authentification
 

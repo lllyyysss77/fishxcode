@@ -47,14 +47,14 @@ Escribe el siguiente contenido en `~/.codebuddy/models.json`:
       "name": "FishXCode GPT-5.5",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     },
     {
       "id": "claude-opus-4-7",
       "name": "FishXCode Claude Opus 4.7",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     }
   ],
   "availableModels": [
@@ -67,7 +67,7 @@ Escribe el siguiente contenido en `~/.codebuddy/models.json`:
 ::: warning Importante
 - Sustituye `sk-你的FishXCode-Token` por la API Key real que creaste en la consola de FishXCode.
 - `availableModels` debe incluir los ID de modelo definidos en `models[].id`; de lo contrario, los modelos nuevos podrían no aparecer en `/model`.
-- Para un gateway de terceros se necesita la dirección completa de Chat Completions: `https://fishxcode.com/v1/chat/completions`.
+- Para un gateway de terceros se necesita la dirección completa de Chat Completions: `https://api.fishxcode.com/v1/chat/completions`.
 :::
 
 ## 4. Mantener Tencent Coding Plan junto con FishXCode
@@ -89,14 +89,14 @@ Si también necesitas conservar el Coding Plan oficial de Tencent, puedes añadi
       "name": "FishXCode GPT-5.5",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     },
     {
       "id": "claude-opus-4-7",
       "name": "FishXCode Claude Opus 4.7",
       "vendor": "OpenAI",
       "apiKey": "sk-你的FishXCode-Token",
-      "url": "https://fishxcode.com/v1/chat/completions"
+      "url": "https://api.fishxcode.com/v1/chat/completions"
     }
   ],
   "availableModels": [
@@ -124,7 +124,7 @@ Comprueba primero `availableModels`. El ID del modelo debe aparecer tanto en `mo
 
 ### El modelo aparece, pero la llamada falla
 
-Comprueba primero `url`. La configuración de modelos externos de FishXCode debe usar la dirección completa `https://fishxcode.com/v1/chat/completions`.
+Comprueba primero `url`. La configuración de modelos externos de FishXCode debe usar la dirección completa `https://api.fishxcode.com/v1/chat/completions`.
 
 ### Falla la autenticación
 

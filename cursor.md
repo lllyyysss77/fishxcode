@@ -15,7 +15,7 @@
 先点击 **添加模型**，然后在 OpenAI API 配置区域填写：
 
 - **API Key**：FishXCode 控制台生成的 key
-- **Base URL**：`https://fishxcode.com/v1`
+- **Base URL**：`https://api.fishxcode.com/v1`
 
 ![Cursor Models 配置示例](/img/start/cursor.png)
 

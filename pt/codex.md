@@ -74,7 +74,7 @@ codex
 
 ```json
 {
-  "chatgpt.apiBase": "https://fishxcode.com/v1",
+  "chatgpt.apiBase": "https://api.fishxcode.com/v1",
   "chatgpt.config": {
     "preferred_auth_method": "api_key",
     "model_provider": "fishxcode"

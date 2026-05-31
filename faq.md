@@ -78,7 +78,7 @@ echo $ANTHROPIC_AUTH_TOKEN
 
 ### 连接不上 FishXCode 服务怎么办？
 
-1. 确认 `BASE_URL` 设置为 `https://fishxcode.com/`（注意末尾的 `/`）
+1. 确认 `BASE_URL` 设置为 `https://api.fishxcode.com/`（注意末尾的 `/`）
 2. 检查网络是否能访问 `fishxcode.com`
 3. 如果在公司网络中，确认代理设置是否正确
 

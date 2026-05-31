@@ -69,7 +69,7 @@ FishXCode encaja en el modo `gateway` dentro de este flujo.
 
 Usa estos valores:
 
-- Gateway URL: `https://fishxcode.com`
+- Gateway URL: `https://api.fishxcode.com`
 - Authentication: `x-api-key`
 - API Key: tu token de FishXCode
 
@@ -130,7 +130,7 @@ Si quieres revisar los campos clave manualmente, céntrate en estos:
 | Campo | Valor recomendado |
 | --- | --- |
 | `inferenceProvider` | `gateway` |
-| `inferenceGatewayBaseUrl` | `https://fishxcode.com` |
+| `inferenceGatewayBaseUrl` | `https://api.fishxcode.com` |
 | `inferenceGatewayAuthScheme` | `x-api-key` |
 | `inferenceGatewayApiKey` | tu token de FishXCode |
 | `inferenceModels` | lista de modelos Claude |
@@ -191,16 +191,16 @@ Revísalo en este orden:
 1. El Developer mode está activado
 2. Has completado `Configure third-party inference`
 3. Elegiste `Gateway`
-4. `gatewayUrl` es `https://fishxcode.com`
+4. `gatewayUrl` es `https://api.fishxcode.com`
 5. El token es válido y puede acceder a modelos Claude
 6. Claude Desktop se reinició por completo tras la configuración
 
-### ¿Por qué la Gateway URL no es `https://fishxcode.com/v1`?
+### ¿Por qué la Gateway URL no es `https://api.fishxcode.com/v1`?
 
 Porque la inferencia de terceros de Claude Desktop usa una configuración de gateway al estilo Anthropic, no la ruta compatible con OpenAI `/v1/chat/completions`. Aquí debes usar la URL raíz del gateway:
 
 ```text
-https://fishxcode.com
+https://api.fishxcode.com
 ```
 
 ### ¿Qué hago si falla la autenticación después de configurar todo?

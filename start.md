@@ -91,7 +91,7 @@ npx zcf
 
 11. API 基础 URL：
     ```
-    https://fishxcode.com
+    https://api.fishxcode.com
     ```
 
 12. API 密钥：
@@ -210,7 +210,7 @@ npm install -g @anthropic-ai/claude-code
   "claudeCode.preferredLocation": "panel",
   "claudeCode.environmentVariables": [
     { "name": "ANTHROPIC_AUTH_TOKEN", "value": "替换为您的 API Key" },
-    { "name": "ANTHROPIC_BASE_URL", "value": "https://fishxcode.com/" }
+    { "name": "ANTHROPIC_BASE_URL", "value": "https://api.fishxcode.com/" }
   ]
 }
 ```
@@ -235,7 +235,7 @@ Token 余额不足，前往控制台充值后重试。
 
 ```powershell
 setx ANTHROPIC_AUTH_TOKEN "sk-xxx"
-setx ANTHROPIC_BASE_URL "https://fishxcode.com/"
+setx ANTHROPIC_BASE_URL "https://api.fishxcode.com/"
 ```
 
 ### 提示"Unable to connect to Anthropic services"

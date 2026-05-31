@@ -11,7 +11,7 @@ Abre RooCode y agrega un proveedor compatible con OpenAI:
 
 | Configuración | Valor |
 |---------------|-------|
-| **URL base de OpenAI** | `https://fishxcode.com/v1` |
+| **URL base de OpenAI** | `https://api.fishxcode.com/v1` |
 | **API Key** | Tu clave de FishXCode |
 | **Modelo** | `gpt-5` |
 

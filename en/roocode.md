@@ -11,7 +11,7 @@ After installing RooCode, open it and select configure provider. Add an OpenAI C
 
 | Setting | Value |
 |---------|-------|
-| **OpenAI Base URL** | `https://fishxcode.com/v1` |
+| **OpenAI Base URL** | `https://api.fishxcode.com/v1` |
 | **API Key** | Your key from FishXCode |
 | **Model** | `gpt-5` |
 

@@ -69,7 +69,7 @@ FishXCode correspond au mode `gateway` dans ce flux.
 
 Utilisez les valeurs suivantes :
 
-- Gateway URL : `https://fishxcode.com`
+- Gateway URL : `https://api.fishxcode.com`
 - Authentication : `x-api-key`
 - API Key : votre token FishXCode
 
@@ -130,7 +130,7 @@ Si vous souhaitez vérifier manuellement les champs importants, concentrez-vous 
 | Champ | Valeur recommandée |
 | --- | --- |
 | `inferenceProvider` | `gateway` |
-| `inferenceGatewayBaseUrl` | `https://fishxcode.com` |
+| `inferenceGatewayBaseUrl` | `https://api.fishxcode.com` |
 | `inferenceGatewayAuthScheme` | `x-api-key` |
 | `inferenceGatewayApiKey` | votre token FishXCode |
 | `inferenceModels` | liste de modèles Claude |
@@ -191,16 +191,16 @@ Vérifiez dans cet ordre :
 1. Le Developer mode est activé
 2. `Configure third-party inference` a bien été complété
 3. Vous avez sélectionné `Gateway`
-4. `gatewayUrl` vaut bien `https://fishxcode.com`
+4. `gatewayUrl` vaut bien `https://api.fishxcode.com`
 5. Le token est valide et peut accéder aux modèles Claude
 6. Claude Desktop a bien été complètement redémarré après la configuration
 
-### Pourquoi l'URL de gateway n'est-elle pas `https://fishxcode.com/v1` ?
+### Pourquoi l'URL de gateway n'est-elle pas `https://api.fishxcode.com/v1` ?
 
 Parce que l'inférence tierce de Claude Desktop utilise une configuration de passerelle de style Anthropic, et non le chemin OpenAI-compatible `/v1/chat/completions`. Il faut donc utiliser l'URL racine de la passerelle :
 
 ```text
-https://fishxcode.com
+https://api.fishxcode.com
 ```
 
 ### Que faire si l'authentification échoue après configuration ?

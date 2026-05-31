@@ -24,7 +24,7 @@ WorkBuddy 的第三方模型配置使用 OpenAI Chat Completions 兼容协议。
       "id": "gpt-5.5",
       "name": "FishXCode GPT-5.5",
       "vendor": "OpenAI",
-      "url": "https://fishxcode.com/v1/chat/completions",
+      "url": "https://api.fishxcode.com/v1/chat/completions",
       "apiKey": "sk-你的FishXCode-Token",
       "maxInputTokens": 200000,
       "maxOutputTokens": 8192
@@ -33,7 +33,7 @@ WorkBuddy 的第三方模型配置使用 OpenAI Chat Completions 兼容协议。
       "id": "claude-opus-4-7",
       "name": "FishXCode Claude Opus 4.7",
       "vendor": "OpenAI",
-      "url": "https://fishxcode.com/v1/chat/completions",
+      "url": "https://api.fishxcode.com/v1/chat/completions",
       "apiKey": "sk-你的FishXCode-Token",
       "maxInputTokens": 200000,
       "maxOutputTokens": 8192
@@ -49,7 +49,7 @@ WorkBuddy 的第三方模型配置使用 OpenAI Chat Completions 兼容协议。
 ::: warning 重要
 - 请将 `sk-你的FishXCode-Token` 替换为你在 FishXCode 控制台创建的实际 API Key。
 - `availableModels` 必须包含上面 `models[].id` 中的模型 ID，否则 WorkBuddy 可能不会在下拉列表中显示。
-- `url` 需要填写完整 Chat Completions 地址：`https://fishxcode.com/v1/chat/completions`。
+- `url` 需要填写完整 Chat Completions 地址：`https://api.fishxcode.com/v1/chat/completions`。
 :::
 
 ## 三、保留腾讯 Token Plan 与 FishXCode
@@ -81,7 +81,7 @@ WorkBuddy 的第三方模型配置使用 OpenAI Chat Completions 兼容协议。
       "id": "gpt-5.5",
       "name": "FishXCode GPT-5.5",
       "vendor": "OpenAI",
-      "url": "https://fishxcode.com/v1/chat/completions",
+      "url": "https://api.fishxcode.com/v1/chat/completions",
       "apiKey": "sk-你的FishXCode-Token",
       "maxInputTokens": 200000,
       "maxOutputTokens": 8192
@@ -90,7 +90,7 @@ WorkBuddy 的第三方模型配置使用 OpenAI Chat Completions 兼容协议。
       "id": "claude-opus-4-7",
       "name": "FishXCode Claude Opus 4.7",
       "vendor": "OpenAI",
-      "url": "https://fishxcode.com/v1/chat/completions",
+      "url": "https://api.fishxcode.com/v1/chat/completions",
       "apiKey": "sk-你的FishXCode-Token",
       "maxInputTokens": 200000,
       "maxOutputTokens": 8192
@@ -122,7 +122,7 @@ WorkBuddy 的第三方模型配置使用 OpenAI Chat Completions 兼容协议。
 
 ### 调用失败或红色异常
 
-请检查 `url` 是否为完整地址 `https://fishxcode.com/v1/chat/completions`，不要只填写 `https://fishxcode.com/v1`。
+请检查 `url` 是否为完整地址 `https://api.fishxcode.com/v1/chat/completions`，不要只填写 `https://api.fishxcode.com/v1`。
 
 ### 鉴权失败
 

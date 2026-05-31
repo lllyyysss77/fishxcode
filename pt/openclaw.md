@@ -138,7 +138,7 @@ Adicione o seguinte conteúdo ao `openclaw.json`:
     "mode": "merge",
     "providers": {
       "fishxcode-anthropic": {
-        "baseUrl": "https://fishxcode.com",
+        "baseUrl": "https://api.fishxcode.com",
         "apiKey": "sk-seu-token-fishxcode",
         "api": "anthropic-messages",
         "models": [
@@ -179,7 +179,7 @@ Ao chamar modelos OpenAI via FishXCode, o campo `api` deve ser `openai-responses
     "mode": "merge",
     "providers": {
       "fishxcode-openai": {
-        "baseUrl": "https://fishxcode.com/v1",
+        "baseUrl": "https://api.fishxcode.com/v1",
         "apiKey": "sk-seu-token-fishxcode",
         "api": "openai-responses",
         "models": [
@@ -206,7 +206,7 @@ Ao chamar modelos OpenAI via FishXCode, o campo `api` deve ser `openai-responses
 ```
 
 ::: tip
-**O protocolo OpenAI requer `/v1`**, ou seja, `https://fishxcode.com/v1`. Isso ocorre porque os dois SDKs têm lógicas de concatenação de caminho diferentes.
+**O protocolo OpenAI requer `/v1`**, ou seja, `https://api.fishxcode.com/v1`. Isso ocorre porque os dois SDKs têm lógicas de concatenação de caminho diferentes.
 :::
 
 #### Configurar Anthropic + OpenAI simultaneamente (Recomendado)
@@ -219,7 +219,7 @@ Adicione ambos os providers lado a lado em `models.providers` para usar modelos 
     "mode": "merge",
     "providers": {
       "fishxcode-anthropic": {
-        "baseUrl": "https://fishxcode.com",
+        "baseUrl": "https://api.fishxcode.com",
         "apiKey": "sk-seu-token-fishxcode",
         "api": "anthropic-messages",
         "models": [
@@ -242,7 +242,7 @@ Adicione ambos os providers lado a lado em `models.providers` para usar modelos 
         ]
       },
       "fishxcode-openai": {
-        "baseUrl": "https://fishxcode.com/v1",
+        "baseUrl": "https://api.fishxcode.com/v1",
         "apiKey": "sk-seu-token-fishxcode",
         "api": "openai-responses",
         "models": [
@@ -284,7 +284,7 @@ Adicione ambos os providers lado a lado em `models.providers` para usar modelos 
 
 | Campo | Significado | Anthropic (Claude) | OpenAI (GPT) |
 | --- | --- | --- | --- |
-| `baseUrl` | Endereço do proxy API | `https://fishxcode.com` | `https://fishxcode.com/v1` |
+| `baseUrl` | Endereço do proxy API | `https://api.fishxcode.com` | `https://api.fishxcode.com/v1` |
 | `apiKey` | Sua chave API | `sk-seu-token-fishxcode` | `sk-seu-token-fishxcode` |
 | `api` | Tipo de protocolo API | `anthropic-messages` | `openai-responses` |
 | `mode` | Modo de mesclagem de config | `merge` (recomendado) | `merge` (recomendado) |
@@ -347,7 +347,7 @@ openclaw gateway restart
 ```json
 {
   "fishxcode-anthropic": {
-    "baseUrl": "https://fishxcode.com",
+    "baseUrl": "https://api.fishxcode.com",
     "apiKey": "sua-api-key",
     "api": "anthropic-messages",
     "headers": {
@@ -368,12 +368,12 @@ openclaw gateway restart
 
 ```json
 {
-  "baseUrl": "https://fishxcode.com"
+  "baseUrl": "https://api.fishxcode.com"
 }
 ```
 
 ::: tip
-O protocolo OpenAI requer `/v1`, ou seja, `https://fishxcode.com/v1`. Isso ocorre porque os dois SDKs têm lógicas de concatenação de caminho diferentes.
+O protocolo OpenAI requer `/v1`, ou seja, `https://api.fishxcode.com/v1`. Isso ocorre porque os dois SDKs têm lógicas de concatenação de caminho diferentes.
 :::
 
 ### O campo api aceita apenas três valores

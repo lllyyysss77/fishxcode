@@ -15,14 +15,14 @@
 | `-p custom` | Use a custom provider (this is the mode FishXCode uses) |
 | `-t api_key` | Equivalent shorthand, same effect as `-p custom` |
 | `-k "sk-xxx"` | API Key |
-| `-u "https://fishxcode.com/"` | FishXCode Base URL |
+| `-u "https://api.fishxcode.com/"` | FishXCode Base URL |
 | `-M "claude-sonnet-4-5-20250929"` | Primary model |
 | `-H "claude-haiku-4-5-20251001"` | Fast model |
 
 Pin specific models example:
 
 ```bash
-npx zcf i -s -t api_key -k "sk-xxx" -u "https://fishxcode.com/" \
+npx zcf i -s -t api_key -k "sk-xxx" -u "https://api.fishxcode.com/" \
   -M "claude-sonnet-4-5-20250929" \
   -H "claude-haiku-4-5-20251001"
 ```

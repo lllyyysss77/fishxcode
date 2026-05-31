@@ -30,7 +30,7 @@ Usa primero la herramienta para verificar tu token, prompt y parámetros de imag
 
 Es la forma más directa y corresponde al endpoint de generación de imágenes compatible con OpenAI.
 
-- Endpoint: `https://fishxcode.com/v1/images/generations`
+- Endpoint: `https://api.fishxcode.com/v1/images/generations`
 - Modelo: `gpt-image-2`
 
 ### Ejemplo en Python
@@ -41,7 +41,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-fishxcode-token",
-    base_url="https://fishxcode.com/v1"
+    base_url="https://api.fishxcode.com/v1"
 )
 
 result = client.images.generate(
@@ -64,7 +64,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   apiKey: "sk-your-fishxcode-token",
-  baseURL: "https://fishxcode.com/v1",
+  baseURL: "https://api.fishxcode.com/v1",
 });
 
 const result = await client.images.generate({
@@ -81,7 +81,7 @@ fs.writeFileSync("gpt-image-2-output.png", Buffer.from(imageBase64, "base64"));
 
 ```bash
 curl --request POST \
-  --url https://fishxcode.com/v1/images/generations \
+  --url https://api.fishxcode.com/v1/images/generations \
   --header "Authorization: Bearer sk-your-fishxcode-token" \
   --header "Content-Type: application/json" \
   --data '{
@@ -99,7 +99,7 @@ El resultado principal de la Images API suele venir en `b64_json`, por lo que de
 
 Si tu flujo ya está basado en `/v1/chat/completions`, también puedes invocar `gpt-image-2` desde ahí.
 
-- Endpoint: `https://fishxcode.com/v1/chat/completions`
+- Endpoint: `https://api.fishxcode.com/v1/chat/completions`
 - Modelo: `gpt-image-2`
 
 ### Ejemplo en Python
@@ -109,7 +109,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="sk-your-fishxcode-token",
-    base_url="https://fishxcode.com/v1"
+    base_url="https://api.fishxcode.com/v1"
 )
 
 response = client.chat.completions.create(
@@ -129,7 +129,7 @@ print(response)
 
 ```bash
 curl --request POST \
-  --url https://fishxcode.com/v1/chat/completions \
+  --url https://api.fishxcode.com/v1/chat/completions \
   --header "Authorization: Bearer sk-your-fishxcode-token" \
   --header "Content-Type: application/json" \
   --data '{
@@ -173,7 +173,7 @@ Si prefieres generar imágenes directamente desde Cherry Studio, configúralo as
 Crea un proveedor personalizado en Cherry Studio con:
 
 - API Key: tu token de FishXCode
-- Base URL: `https://fishxcode.com/v1`
+- Base URL: `https://api.fishxcode.com/v1`
 
 ### 2. Añadir el modelo
 
@@ -191,7 +191,7 @@ Crea una nueva sesión o abre el panel de generación de imágenes, selecciona `
 
 ::: tip Consejo
 Si Cherry Studio no muestra imágenes, revisa primero:
-- que la Base URL sea `https://fishxcode.com/v1`
+- que la Base URL sea `https://api.fishxcode.com/v1`
 - que tu versión de Cherry Studio soporte correctamente la API OpenAI Images
 :::
 
@@ -213,7 +213,7 @@ Revísalo en este orden:
 1. Asegúrate de que el nombre del modelo sea `gpt-image-2`
 2. Asegúrate de que el token venga de la [Consola de FishXCode](https://fishxcode.com/console/token)
 3. Asegúrate de que tu token tenga acceso a `gpt-image-2`
-4. Asegúrate de que la Base URL sea `https://fishxcode.com/v1`
+4. Asegúrate de que la Base URL sea `https://api.fishxcode.com/v1`
 
 ### ¿Por qué fallan algunos parámetros extra?
 

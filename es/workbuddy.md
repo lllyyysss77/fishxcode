@@ -24,7 +24,7 @@ Escribe el siguiente contenido en `~/.workbuddy/models.json`:
       "id": "gpt-5.5",
       "name": "FishXCode GPT-5.5",
       "vendor": "OpenAI",
-      "url": "https://fishxcode.com/v1/chat/completions",
+      "url": "https://api.fishxcode.com/v1/chat/completions",
       "apiKey": "sk-你的FishXCode-Token",
       "maxInputTokens": 200000,
       "maxOutputTokens": 8192
@@ -33,7 +33,7 @@ Escribe el siguiente contenido en `~/.workbuddy/models.json`:
       "id": "claude-opus-4-7",
       "name": "FishXCode Claude Opus 4.7",
       "vendor": "OpenAI",
-      "url": "https://fishxcode.com/v1/chat/completions",
+      "url": "https://api.fishxcode.com/v1/chat/completions",
       "apiKey": "sk-你的FishXCode-Token",
       "maxInputTokens": 200000,
       "maxOutputTokens": 8192
@@ -49,7 +49,7 @@ Escribe el siguiente contenido en `~/.workbuddy/models.json`:
 ::: warning Importante
 - Sustituye `sk-你的FishXCode-Token` por la API Key real que creaste en la consola de FishXCode.
 - `availableModels` debe incluir los ID de modelo definidos en `models[].id`; de lo contrario, WorkBuddy podría no mostrarlos en la lista desplegable.
-- `url` debe ser la dirección completa de Chat Completions: `https://fishxcode.com/v1/chat/completions`.
+- `url` debe ser la dirección completa de Chat Completions: `https://api.fishxcode.com/v1/chat/completions`.
 :::
 
 ## 3. Mantener Tencent Token Plan junto con FishXCode
@@ -81,7 +81,7 @@ Si también necesitas conservar el Token Plan oficial de Tencent, puedes colocar
       "id": "gpt-5.5",
       "name": "FishXCode GPT-5.5",
       "vendor": "OpenAI",
-      "url": "https://fishxcode.com/v1/chat/completions",
+      "url": "https://api.fishxcode.com/v1/chat/completions",
       "apiKey": "sk-你的FishXCode-Token",
       "maxInputTokens": 200000,
       "maxOutputTokens": 8192
@@ -90,7 +90,7 @@ Si también necesitas conservar el Token Plan oficial de Tencent, puedes colocar
       "id": "claude-opus-4-7",
       "name": "FishXCode Claude Opus 4.7",
       "vendor": "OpenAI",
-      "url": "https://fishxcode.com/v1/chat/completions",
+      "url": "https://api.fishxcode.com/v1/chat/completions",
       "apiKey": "sk-你的FishXCode-Token",
       "maxInputTokens": 200000,
       "maxOutputTokens": 8192
@@ -122,7 +122,7 @@ Comprueba primero que `availableModels` incluya el ID de modelo correspondiente 
 
 ### La llamada falla o aparece un error en rojo
 
-Comprueba que `url` sea la dirección completa `https://fishxcode.com/v1/chat/completions`, no solo `https://fishxcode.com/v1`.
+Comprueba que `url` sea la dirección completa `https://api.fishxcode.com/v1/chat/completions`, no solo `https://api.fishxcode.com/v1`.
 
 ### Falla la autenticación
 

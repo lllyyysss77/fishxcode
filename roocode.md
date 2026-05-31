@@ -11,7 +11,7 @@
 
 | 配置项 | 值 |
 |--------|-----|
-| **OpenAI 基础 URL** | `https://fishxcode.com/v1` |
+| **OpenAI 基础 URL** | `https://api.fishxcode.com/v1` |
 | **API 密钥** | 你在 FishXCode 创建的 Key |
 | **模型** | `gpt-5` |
 
